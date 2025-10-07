@@ -4,7 +4,16 @@ body {
   margin: 0;
   padding: 20px;
   font-family: sans-serif;
+
+/* === RAINBOW BACKGROUND - STATIC === */
+background-image: url("assets/rainbow.png");
+  background-size: cover;        /* fills the entire screen */
+  background-position: center;   /* centers the image */
+  background-repeat: no-repeat;  /* no tiling */
+  background-attachment: fixed;  /* keeps it still while scrolling */
+
 }
+
 /* === CENTERED === */
 .centered {
   display: flex;
@@ -15,9 +24,9 @@ body {
 
 /* === Image Styling === */
 img {
-  height: 150px;
+  height: 400px;
   border-radius: 12px;
-  filter: grayscale(100%);
+  /* filter: grayscale(100%); */
   transition: 0.4s ease;
 }
 
@@ -28,11 +37,11 @@ img:hover {
 
 /* === Gonzo Text Hover === */
 #gonzo {
-  font-family: Impact, Arial, sans-serif;
+  font-family: 'Bangers', sans-serif;
   font-size: 4rem;
   text-align: center;
-  color: #111;
   transition: all 0.3s ease;
+  animation: rainbowFlash 3s infinite;
 }
 
 #gonzo:hover {
@@ -45,3 +54,55 @@ img:hover {
   text-align: center;
   color: #555;
 }
+
+/* === Rainbow Color Flash === */
+@keyframes rainbowFlash {
+  0%   { color: red; }
+  20%  { color: orange; }
+  40%  { color: yellow; }
+  60%  { color: green; }
+  80%  { color: blue; }
+  100% { color: violet; }
+}
+
+.main-gonzo {
+  margin-bottom: 40px; /* adds space below the first picture */
+}
+.gonzo-gif {
+  margin: 20px 0; /* adds 20px above and below each gif */
+}
+.gonzo-caption {
+  font-family: 'Bangers', sans-serif;
+  font-size: 1.5rem;
+  color: #333;
+  margin-top: 5px;    /* space above text */
+  margin-bottom: 5px; /* space below text before the GIFs */
+}
+
+.title-caption {
+  font-family: 'Bangers', sans-serif;
+  font-size: 1.8rem;
+  color: #333;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+
+.gallery-swap {
+  margin-top: 20px;
+  display: inline-block;
+  width: 740px;
+  height: 300px;
+  border-radius: 12px;
+  background-image: url("assets/gonzostunt1.png");
+  background-size: contain;
+  background-position: center;
+  transition: 0.4s ease;
+}
+
+.gallery-swap:hover {
+  background-image: url("assets/gonzostunt2-hover.png");
+  transform: scale(1.03);
+}
+
+
