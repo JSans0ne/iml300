@@ -30,13 +30,178 @@ html, body {
 
 .paw-button:hover {
   transform: scale(1.05);
-  animation: shake 0.3s ease-in-out;
 }
 
-@keyframes shake {
-  0% { transform: translate(0, 0) rotate(0deg) scale(1.05); }
-  25% { transform: translate(-2px, 2px) rotate(-2deg) scale(1.05); }
-  50% { transform: translate(2px, -2px) rotate(2deg) scale(1.05); }
-  75% { transform: translate(-2px, 1px) rotate(-1deg) scale(1.05); }
-  100% { transform: translate(0, 0) rotate(0deg) scale(1.05); }
+/* === Page 2 Paw Buttons === */
+.paw-btn {
+  position: fixed;
+  width: 100px;
+  height: auto;
+  z-index: 10;
+  transition: transform 0.2s ease;
 }
+
+.paw-btn img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Simple hover grow effect */
+.paw-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Left and right placement */
+.paw-btn.back {
+  bottom: 30px;
+  left: 30px;
+}
+
+.paw-btn.next {
+  bottom: 30px;
+  right: 30px;
+}
+/* ===== Page 3: Attack chain ===== */
+.attack-page {
+  max-width: 900px;
+  margin: 40px auto 120px; /* bottom space so paw buttons don’t overlap */
+  padding: 0 16px;
+  text-align: center;
+}
+
+.attack-title {
+  font-family: system-ui, -apple-system, Arial, sans-serif;
+  font-size: 2rem;
+  margin: 16px 0 24px;
+}
+
+/* Simple circle icon placeholder */
+.attack-icon {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: #fb8332;         /* your orange */
+  color: #000;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+  letter-spacing: 1px;
+  user-select: none;
+  cursor: pointer;
+}
+
+/* Base image styling */
+.attack-img {
+  display: block;
+  width: min(85vw, 720px);
+  margin: 16px auto;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* 1) Hover icon => show img1 */
+.attack-icon:hover ~ .img1 {
+  opacity: 1;
+}
+
+/* 2) Hover img1 => show img2 */
+.img1:hover ~ .img2 {
+  opacity: 1;
+}
+
+
+/* ===== Full-screen takeover (appears on click of img2) ===== */
+.attack-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;         /* hidden until active */
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  z-index: 9998;         /* below paw buttons */
+  animation: none;
+  padding: 16px;
+}
+
+.attack-active .attack-overlay {
+  display: flex;
+  animation: attackFlash 1.5s infinite; /* soft pulse */
+}
+
+.attack-final {
+  max-width: 90vw;
+  max-height: 90vh;
+  display: block;
+}
+
+/* Soft red/orange flash (metered, not crazy) */
+@keyframes attackFlash {
+  0%   { background-color: #2b0000; }
+  40%  { background-color: #8a1f00; }
+  70%  { background-color: #fb8332; }
+  100% { background-color: #2b0000; }
+}
+
+/* ===== Paw buttons (always on top) ===== */
+.paw-btn {
+  position: fixed;
+  width: 100px;
+  height: auto;
+  z-index: 9999;             /* top of everything */
+  transition: transform 0.2s ease;
+}
+
+.paw-btn img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.paw-btn:hover {
+  transform: scale(1.1);
+}
+
+.paw-btn.back { bottom: 30px; left: 30px; }
+.paw-btn.next { bottom: 30px; right: 30px; }
+
+/* Click fade version */
+.attack-img {
+  display: block;
+  width: 60%;            /* adjust size here — try 60% first */
+  max-width: 600px;      /* safety limit */
+  margin: 16px auto;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.attack-img.show {
+  opacity: 1;
+}
+
+.attack-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  z-index: 9998;
+  animation: attackFlash 1.5s infinite;
+  padding: 16px;
+}
+
+.attack-final {
+  max-width: 90vw;
+  max-height: 90vh;
+  display: block;
+}
+
+@keyframes attackFlash {
+  0%   { background-color: #2b0000; }
+  40%  { background-color: #8a1f00; }
+  70%  { background-color: #fb8332; }
+  100% { background-color: #2b0000; }
+}
+
