@@ -1,0 +1,39 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #f5e9ff; /* calm pastel before attack */
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+h1 {
+  color: #222;
+  margin-bottom: 40px;
+}
+
+.trigger img {
+  width: 120px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.trigger img:hover {
+  transform: scale(1.1);
+}
+
+.attack-img {
+  width: 100%;
+  max-width: 600px;
+  opacity: 0;
+  transition: opacity 1s ease;
+  display: block;
+  margin: 40px auto;
+}

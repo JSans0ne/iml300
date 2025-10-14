@@ -32,6 +32,16 @@ html, body {
   transform: scale(1.05);
 }
 
+/* ===== Global font style for all pages ===== */
+body {
+  font-family: system-ui, -apple-system, Arial, sans-serif;
+  font-size: 15pt;        /* same size as page 2 */
+  font-weight: bold;      /* makes all text bold */
+  color: #21324f;         /* same dark blue tone */
+  margin: 0;
+}
+
+
 /* === Page 2 Paw Buttons === */
 .paw-btn {
   position: fixed;
@@ -70,27 +80,22 @@ html, body {
   text-align: center;
 }
 
-.attack-title {
-  font-family: system-ui, -apple-system, Arial, sans-serif;
-  font-size: 2rem;
-  margin: 16px 0 24px;
+/* ===== Page 3: Attack background ===== */
+body:has(.attack-page) {
+  background-color: #f7efbb;
 }
+
+
 
 /* Simple circle icon placeholder */
 .attack-icon {
+  display: block;
   width: 120px;
-  height: 120px;
+  height: auto;
   margin: 0 auto 16px;
-  border-radius: 50%;
-  background: #fb8332;         /* your orange */
-  color: #000;
-  display: grid;
-  place-items: center;
-  font-weight: bold;
-  letter-spacing: 1px;
-  user-select: none;
   cursor: pointer;
 }
+
 
 /* Base image styling */
 .attack-img {
@@ -221,10 +226,10 @@ body:has(.sleep-page) {
 }
 
 .sleep-title {
-  font-family: system-ui, -apple-system, Arial, sans-serif;
-  font-size: 2rem;
-  margin: 12px 0 24px;
+  font-size: 15pt;     /* same as global text */
+  font-weight: bold;   /* same boldness as page 2 + 3 */
   color: #21324f;
+  margin: 12px 0 24px;
 }
 
 /* ===== Sleeping Greyskull image placement ===== */
@@ -403,8 +408,90 @@ body:has(.sleep-page) .paw-btn.back {
   right: 8%;
 }
 
+.greyskull-top {
+  position: fixed;
+  bottom: 0;
+  left: 5%;
+  width: 30vw;      /* adjust as needed */
+  max-width: 730px;
+  height: auto;
+  z-index: 1000;    /* ensures it's above the p5 canvas */
+  pointer-events: none; /* lets drawing happen behind it */
+}
 
+.page-text {
+  position: fixed;
+  top: 20px;
+  width: 100%;
+  text-align: center;
+  font-family: system-ui, -apple-system, Arial, sans-serif;
+  font-size: 15pt;     /* adjust this for size */
+  color: #21324f;      /* nice dark blue */
+  z-index: 1001;       /* above Greyskull */
+}
 
+/* make all headings match page 2 text */
+h1, h2, h3, h4, h5, h6 {
+  font-size: 15pt;   /* same as body text */
+  font-weight: bold;
+  margin: 0.5em 0;   /* adds a little spacing above/below */
+}
 
+/* ===== Page 5: Rescue Story ===== */
+body:has(.story-page) {
+  background-color: #000;      /* black background */
+  color: #fff;                 /* white text */
+  font-weight: bold;           /* match other pages */
+  font-size: 15pt;             /* same size as rest */
+}
 
+.story-page {
+  max-width: 900px;
+  margin: 60px auto 120px;
+  padding: 0 20px;
+  text-align: center;
+}
 
+.text-block {
+  margin: 40px 0;
+  line-height: 1.4;
+}
+
+.gallery {
+  display: flex;
+  justify-content: center;
+  gap: 20px;                   /* space between pictures */
+  margin: 20px 0 40px;
+}
+
+.gallery img {
+  width: 45%;                  /* two images side by side */
+  height: auto;
+  border-radius: 8px;
+}
+/* ===== Four-wide gallery layout ===== */
+.gallery.four-wide {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;               /* small space between images */
+  margin: 20px 0 40px;
+}
+
+.gallery.four-wide img {
+  width: 22%;              /* four images fit comfortably side-by-side */
+  height: auto;
+  border-radius: 6px;
+}
+/* ===== Single image gallery ===== */
+.gallery.single-image {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0 120px;  /* nice margin beneath the image */
+}
+
+.gallery.single-image img {
+  width: 60%;            /* large enough to stand out */
+  height: auto;
+  border-radius: 8px;
+}
