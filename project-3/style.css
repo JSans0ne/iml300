@@ -205,3 +205,164 @@ html, body {
   100% { background-color: #2b0000; }
 }
 
+/* ===== Page 4: Sleep scaffold ===== */
+
+/* pleasant light blue / purplish-blue background */
+body:has(.sleep-page) {
+  background: linear-gradient(180deg, #eaf2ff 0%, #e3ecff 60%, #dde7ff 100%);
+}
+
+/* page layout */
+.sleep-page {
+  max-width: 1000px;
+  margin: 40px auto 140px; /* bottom room for paw buttons */
+  padding: 0 16px;
+  text-align: center;
+}
+
+.sleep-title {
+  font-family: system-ui, -apple-system, Arial, sans-serif;
+  font-size: 2rem;
+  margin: 12px 0 24px;
+  color: #21324f;
+}
+
+/* ===== Sleeping Greyskull image placement ===== */
+.sleep-hero {
+  position: relative;
+  width: static;
+  height: 0;
+}
+
+/* Lock Greyskull to the corner, no interference with layout */
+.sleep-img {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 70vw;          /* was 40vw → 30% bigger overall */
+  max-width: 730px;     /* proportionally larger for big screens */
+  height: auto;
+  z-index: 6;
+  transform: translate(-6%, 0);
+  pointer-events: none;
+}
+
+
+
+
+/* ===== Clouds (rounder, puffier) ===== */
+/* ===== Dream Clouds (breathing + glowing, not moving) ===== */
+/* ===== Dream Clouds (with full soft grey outline) ===== */
+.cloud {
+  position: fixed;        /* changed from absolute */
+  background: white;
+  border-radius: 50%;
+  width: 160px;
+  height: 90px;
+  top: 20%;
+  opacity: 0.9;
+  box-shadow:
+    50px 10px 0 0 white,
+    100px 0 0 0 white,
+    70px -20px 0 0 white,
+    30px -10px 0 0 white,
+    90px 20px 0 0 white;
+  animation: cloudBreath 6s ease-in-out infinite, cloudGlow 8s ease-in-out infinite;
+  transform-origin: center;
+  z-index: 3;             /* sits above background, below Greyskull */
+}
+
+
+/* ---- Soft grey outline that wraps the entire cloud ---- */
+.cloud::before {
+  content: "";
+  position: absolute;
+  inset: -4px; /* expands slightly outward */
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.1);
+  filter: blur(6px);
+  z-index: -1;
+}
+
+
+/* Flip and scale variations */
+.cloud-left {
+  left: 10%;
+  transform: scaleX(-1) scale(1.1);   /* flipped horizontally */
+}
+.cloud-center {
+  left: 40%;
+  transform: scale(1.3);
+  height: 100px;                      /* slightly taller */
+  width: 200px;                       /* wider */
+  border-radius: 60%;
+  box-shadow:                          /* softer, rounder middle cloud */
+    50px 5px 0 0 white,
+    110px -10px 0 0 white,
+    70px 15px 0 0 white,
+    90px 0 0 0 white;
+}
+.cloud-right {
+  right: 10%;
+  transform: scale(1.1);
+}
+
+/* ===== Breathing and Glow Animations ===== */
+@keyframes cloudBreath {
+  0%, 100% { transform: scale(1) }
+  50% { transform: scale(1.25) }
+}
+
+@keyframes cloudGlow {
+  0%, 100% { opacity: 0.9; filter: brightness(1); }
+  50% { opacity: 1; filter: brightness(1.15); }
+}
+
+/* ===== Page 4: Custom Paw Button Position ===== */
+body:has(.sleep-page) .paw-btn.back {
+  left: 19%;     /* moves it right toward center */
+  bottom: 30px;  /* slightly above Greyskull */
+}
+/* ===== Dream Bubbles ===== */
+.dream-bubbles {
+  position: fixed;
+  bottom: 12%;   /* closer to Greyskull’s head */
+  left: 6%;     /* moved left toward Greyskull */
+  width: 40%;    /* narrower area */
+  height: 70%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 2;
+}
+
+
+.bubble {
+  position: absolute;
+  bottom: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(20px) scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  70% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-60vh) scale(1.1); /* stop lower—behind clouds */
+    opacity: 0;
+  }
+}
+
+

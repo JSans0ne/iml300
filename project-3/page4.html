@@ -1,17 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page 4</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Page 4 — Sleep</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-  <body>
-    <h1>This is Page 4</h1>
-    <p>Welcome to Page 4! You can go back or move forward.</p>
+  <main class="sleep-page">
+    <h1 class="sleep-title">Dreamland (placeholder text)</h1>
 
-    <a href="index.html">← Back to Home</a>
-    <a href="page5.html">Go to Page 5 →</a>
-  </body>
+    <!-- Sleeping Greyskull placeholder area (we'll swap to your PNG later) -->
+    <div class="sleep-hero">
+      <!-- If/when you have the PNG, replace the div below with:
+      <img src="assets/greyskull-sleep.png" alt="Greyskull sleeping" class="sleep-img">
+      -->
+      <div class="sleep-hero">
+  <img src="assets/grey-sleeps.png" alt="Greyskull sleeping" class="sleep-img">
+  <!-- Dream bubbles container -->
+<div class="dream-bubbles"></div>
+
+</div>
+
+    <!-- Clouds -->
+<div class="cloud cloud-left"></div>
+<div class="cloud cloud-center"></div>
+<div class="cloud cloud-right"></div>
+
+  </main>
+
+  <!-- Paw buttons (always on top) -->
+  <a href="page3.html" class="paw-btn back">
+    <img src="assets/paw-button-back.png" alt="Meow Back">
+  </a>
+  <a href="page5.html" class="paw-btn next">
+    <img src="assets/paw-button-next.png" alt="Meow Next">
+  </a>
+
+<script>
+  const container = document.querySelector('.dream-bubbles');
+
+  function makeBubble() {
+    const b = document.createElement('div');
+    b.classList.add('bubble');
+
+    const size = Math.random() * 12 + 8;
+    b.style.width = `${size}px`;
+    b.style.height = `${size}px`;
+
+    // keep close to Greyskull's head
+    b.style.left = `${Math.random() * 8 + 5}%`;
+
+    // random but slightly faster animation
+    b.style.animationDuration = `${Math.random() * 2 + 4}s`;
+
+    container.appendChild(b);
+
+    // remove bubble when animation ends
+    setTimeout(() => b.remove(), 6000);
+  }
+
+  // make bubbles appear instantly on load
+  for (let i = 0; i < 20; i++) {
+    setTimeout(makeBubble, i * 100); // stagger first 20 bubbles right away
+  }
+
+  // continue spawning after that
+  setInterval(makeBubble, 250);
+</script>
+
+
+
+</body>
 </html>
