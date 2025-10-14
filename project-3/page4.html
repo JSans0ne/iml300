@@ -11,22 +11,25 @@
   <main class="sleep-page">
     <h1 class="sleep-title">Dreamland (placeholder text)</h1>
 
-    <!-- Sleeping Greyskull placeholder area (we'll swap to your PNG later) -->
     <div class="sleep-hero">
-      <!-- If/when you have the PNG, replace the div below with:
-      <img src="assets/greyskull-sleep.png" alt="Greyskull sleeping" class="sleep-img">
-      -->
-      <div class="sleep-hero">
   <img src="assets/grey-sleeps.png" alt="Greyskull sleeping" class="sleep-img">
-  <!-- Dream bubbles container -->
+</div>
+
+<!-- Dream bubbles container -->
 <div class="dream-bubbles"></div>
 
-</div>
 
     <!-- Clouds -->
 <div class="cloud cloud-left"></div>
 <div class="cloud cloud-center"></div>
 <div class="cloud cloud-right"></div>
+
+<!-- Dream images that appear above the clouds -->
+<div class="dream-images">
+  <img src="assets/dream1.png" alt="Dream 1">
+  <img src="assets/dream2.png" alt="Dream 2">
+  <img src="assets/dream3.png" alt="Dream 3">
+</div>
 
   </main>
 
@@ -70,7 +73,17 @@
   setInterval(makeBubble, 250);
 </script>
 
+<script>
+  // Dream image fade-in sequence
+  const dreamImages = document.querySelectorAll('.dream-images img');
+  const greyskull = document.querySelector('.sleep-img');
 
+  greyskull.addEventListener('click', () => {
+    dreamImages.forEach((img, i) => {
+      setTimeout(() => img.classList.add('show'), i * 1000); // 1s delay each
+    });
+  });
+</script>
 
 </body>
 </html>

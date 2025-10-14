@@ -239,16 +239,14 @@ body:has(.sleep-page) {
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 70vw;          /* was 40vw → 30% bigger overall */
-  max-width: 730px;     /* proportionally larger for big screens */
+  width: 70vw;
+  max-width: 730px;
   height: auto;
   z-index: 6;
   transform: translate(-6%, 0);
-  pointer-events: none;
+  pointer-events: auto; /* allow clicking */
+  cursor: pointer;      /* shows clickable cursor */
 }
-
-
-
 
 /* ===== Clouds (rounder, puffier) ===== */
 /* ===== Dream Clouds (breathing + glowing, not moving) ===== */
@@ -364,5 +362,49 @@ body:has(.sleep-page) .paw-btn.back {
     opacity: 0;
   }
 }
+/* ===== Dream images above clouds ===== */
+.dream-images {
+  position: fixed;
+  inset: 0;                /* full screen area */
+  z-index: 20;
+  pointer-events: none;    /* don't block clicks */
+}
+
+
+/* each dream image */
+.dream-images img {
+  width: 80px;              /* smaller so they fit inside clouds */
+  height: auto;
+  opacity: 0;
+  transition: opacity 1s ease;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+/* when shown */
+.dream-images img.show {
+  opacity: 1;
+}
+.dream-images img:nth-child(1) {
+  position: fixed;
+  top: 24%;   /* left cloud */
+  left: 17%;
+}
+
+.dream-images img:nth-child(2) {
+  position: fixed;
+  top: 24%;   /* center cloud */
+  left: 49%;
+}
+
+.dream-images img:nth-child(3) {
+  position: fixed;
+  top: 22%;   /* right cloud */
+  right: 8%;
+}
+
+
+
+
 
 
