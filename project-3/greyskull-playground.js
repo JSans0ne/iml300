@@ -51,36 +51,74 @@ function draw() {
     }
   }
 
-    // --- Mode 2: Paw prints walking (black, smoother, directional) ---
-  if (mode === 2) {
-    // measure mouse movement direction
-    let dx = mouseX - pmouseX;
-    let dy = mouseY - pmouseY;
-    let angle = atan2(dy, dx);
-
-    // add a new paw print every 300 ms (slower, steadier)
-    if (millis() - lastPawTime > 300) {
-      pawPrints.push({
-        x: mouseX,
-        y: mouseY,
-        life: 300, // fade more slowly (~3 sec)
-        rotation: angle
-      });
-      lastPawTime = millis();
-    }
-
-    // draw paw prints
-    for (let i = pawPrints.length - 1; i >= 0; i--) {
-      let p = pawPrints[i];
-      push();
-      translate(p.x, p.y);
-      rotate(p.rotation);
-      drawPaw(map(p.life, 0, 300, 0, 100)); // fade alpha
-      pop();
-      p.life--;
-      if (p.life <= 0) pawPrints.splice(i, 1);
-    }
+   // --- Mode 2: Floating Sin Wave that Compresses + Boings ---
+if (mode === 2) {
+  // setup once
+  if (!this.wave) {
+    this.points = 180;
+    this.wave = Array.from({ length: this.points }, (_, i) => i);
+    this.curlLevel = 0;  // 0–4
+    this.maxCurl = 4;
+    this.float = {
+      x: width / 2,
+      y: height / 2,
+      vx: random(-1.5, 1.5),  // slightly faster drift
+      vy: random(-1.5, 1.5)
+    };
   }
+
+  // keep the smooth background alive
+  t += 0.002;
+  if (t >= 1) {
+    t = 0;
+    bgColorA = bgColorB;
+    bgColorB = color(random(360), 30, 100);
+  }
+  let bg = lerpColor(bgColorA, bgColorB, t);
+  background(bg);
+
+  // click cycles curl stages 0–4 then boings back to 0
+  if (mouseIsPressed && !this.clicked) {
+    this.clicked = true;
+    this.curlLevel = (this.curlLevel + 1) % (this.maxCurl + 1);
+  }
+  if (!mouseIsPressed) this.clicked = false;
+
+  // floating motion with soft bounce
+  this.float.x += this.float.vx;
+  this.float.y += this.float.vy;
+  if (this.float.x < width * 0.2 || this.float.x > width * 0.8) this.float.vx *= -1;
+  if (this.float.y < height * 0.3 || this.float.y > height * 0.7) this.float.vy *= -1;
+
+  // draw light-blue sin wave
+  noFill();
+  stroke(200, 80, 100);     // light blue tone (HSB)
+  strokeWeight(4);
+  beginShape();
+  for (let i = 0; i < this.wave.length; i++) {
+    let pct = i / this.points;
+
+    // tighter compression with higher curlLevel
+    let freq = map(this.curlLevel, 0, this.maxCurl, 1, 12);   // frequency of sine waves
+    let amp  = map(this.curlLevel, 0, this.maxCurl, 100, 10); // amplitude shrinks tighter
+    let phase = frameCount * 0.05;
+
+    let x = this.float.x + (pct - 0.5) * width * 0.5;
+    let y = this.float.y + sin(pct * freq * TWO_PI + phase) * amp;
+
+    curveVertex(x, y);
+  }
+  endShape();
+
+  // gentle "boing" drift when uncurled
+  if (this.curlLevel === 0) {
+    this.float.x += sin(frameCount * 0.03) * 0.4;
+    this.float.y += cos(frameCount * 0.03) * 0.4;
+  }
+}
+
+
+
      // --- Mode 3: Sparkle bursts on click ---
   if (mode === 3) {
     // create bursts when mouse is pressed
