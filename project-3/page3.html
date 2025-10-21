@@ -2,82 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Page 3 — Attack!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page 3 - Text Bump</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <main class="attack-page">
-    <h1 class="attack-title">I'm suuuuuuch a happy cat... but... um, you know...<br>
-    Sometimes, you know... I get this type of kitty-rage...<br>
-    But it's cool. Totally cool. I'm cool. I'm so chill.<br>
-    Click this happy cat icon.<br>
 
-    </h1>
+  <!-- Text layer that contains your paragraphs -->
+  <div class="text-layer" id="screen">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae felis
+    vel lorem tempus placerat. Cras malesuada, ipsum ac tristique suscipit,
+    nulla tortor commodo mi, eget dapibus ex neque id nisl.</p>
 
-   <!-- Attack icon -->
-  <img src="assets/happy-icon.png" alt="Happy icon"
-     class="attack-icon" id="attackIcon">
+    <p>Vivamus tincidunt metus sit amet orci dignissim, non commodo neque
+    ultricies. Curabitur lacinia, enim sed rhoncus fringilla, risus lacus
+    tincidunt libero, eget posuere nulla erat nec velit.</p>
 
-
-    <!-- Images (hidden initially) -->
-    <img src="assets/attack1.jpg" alt="Attack step 1" class="attack-img" id="attack1">
-    <img src="assets/attack2.jpg" alt="Attack step 2" class="attack-img" id="attack2">
-
-  </main>
-
-  <!-- Full-screen takeover (hidden until last click) -->
-  <div class="attack-overlay" id="attackOverlay" aria-hidden="true">
-    <img src="assets/attack3.png" alt="Full attack" class="attack-final">
+    <p>Move your mouse across the screen to make your digital paws bump the
+    words. They’ll float away and then gently drift back into place.</p>
   </div>
 
-  <!-- Always-on-top paw buttons -->
-  <a href="page2.html" class="paw-btn back">
-    <img src="assets/paw-button-back.png" alt="Meow Back">
-  </a>
-  <a href="page4.html" class="paw-btn next">
-    <img src="assets/paw-button-next.png" alt="Meow Next">
-  </a>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+<script src="cat-paws.js"></script>
+<script src="text-bump.js"></script>
 
- <script>
-  let step = 0;
-  const icon = document.getElementById('attackIcon');
-  const img1 = document.getElementById('attack1');
-  const img2 = document.getElementById('attack2');
-  const overlay = document.getElementById('attackOverlay');
 
-  // Step 1: click icon -> show first image
-  icon.addEventListener('click', () => {
-    if (step === 0) {
-      img1.classList.add('show');
-      step = 1;
-    }
-  });
+  <!-- PNG overlay of the computer frame -->
+  <img src="assets/Cmptr-text.png" class="computer-frame" alt="Computer frame">
 
-  // Step 2: click first image -> show second image
-  img1.addEventListener('click', () => {
-    if (step === 1) {
-      img2.classList.add('show');
-      step = 2;
-    }
-  });
+  <!-- Same JavaScript from before -->
+  <script src="text-bump.js"></script>
 
-  // Step 3: click second image -> trigger overlay
-  img2.addEventListener('click', () => {
-    if (step === 2) {
-      overlay.style.display = 'flex';
-      document.body.classList.add('attack-active');
-      step = 3;
-    }
-  });
+  <!-- === Navigation Paw Buttons === -->
+<a href="page2.html" class="paw-btn back">
+  <img src="assets/paw-button-back.png" alt="Meow Back">
+</a>
 
-  // Step 4: click overlay -> close it
-  overlay.addEventListener('click', () => {
-    overlay.style.display = 'none';
-    document.body.classList.remove('attack-active');
-  });
-</script>
+<a href="page4.html" class="paw-btn next">
+  <img src="assets/paw-button-next.png" alt="Meow Next">
+</a>
 
 </body>
 </html>

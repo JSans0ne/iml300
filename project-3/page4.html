@@ -3,40 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Page 4 — Sleep</title>
+  <title>Page 4 — The Kitty Rage!</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <main class="sleep-page">
-    <h1 class="sleep-title">It is really wild how after I go all crazy kitty mode, I'm so tired.<br>
-    There is nothing like a grrreat nap, amirite?!?<br>
-  I find my favorite spot and head on out to sleepy kitty city where I hang out with all my favorite things. <br>
-Click on my head so you can see what I'm dreaming about. </h1>
+  <main class="attack-page">
+    <h1 class="attack-title">I'm suuuuuuch a happy cat... but... um, you know...<br>
+    Sometimes, you know... I get this type of kitty-rage...<br>
+    But it's cool. Totally cool. I'm cool. I'm so chill.<br>
+    Click this happy cat icon.<br>
 
-    <div class="sleep-hero">
-  <img src="assets/grey-sleeps.png" alt="Greyskull sleeping" class="sleep-img">
-</div>
+    </h1>
 
-<!-- Dream bubbles container -->
-<div class="dream-bubbles"></div>
+   <!-- Attack icon -->
+  <img src="assets/happy-icon.png" alt="Happy icon"
+     class="attack-icon" id="attackIcon">
 
 
-    <!-- Clouds -->
-<div class="cloud cloud-left"></div>
-<div class="cloud cloud-center"></div>
-<div class="cloud cloud-right"></div>
-
-<!-- Dream images that appear above the clouds -->
-<div class="dream-images">
-  <img src="assets/dream1.png" alt="Dream 1">
-  <img src="assets/dream2.png" alt="Dream 2">
-  <img src="assets/dream3.png" alt="Dream 3">
-</div>
+    <!-- Images (hidden initially) -->
+    <img src="assets/attack1.jpg" alt="Attack step 1" class="attack-img" id="attack1">
+    <img src="assets/attack2.jpg" alt="Attack step 2" class="attack-img" id="attack2">
 
   </main>
 
-  <!-- Paw buttons (always on top) -->
+  <!-- Full-screen takeover (hidden until last click) -->
+  <div class="attack-overlay" id="attackOverlay" aria-hidden="true">
+    <img src="assets/attack3.png" alt="Full attack" class="attack-final">
+  </div>
+
+  <!-- Always-on-top paw buttons -->
   <a href="page3.html" class="paw-btn back">
     <img src="assets/paw-button-back.png" alt="Meow Back">
   </a>
@@ -44,47 +40,42 @@ Click on my head so you can see what I'm dreaming about. </h1>
     <img src="assets/paw-button-next.png" alt="Meow Next">
   </a>
 
-<script>
-  const container = document.querySelector('.dream-bubbles');
+ <script>
+  let step = 0;
+  const icon = document.getElementById('attackIcon');
+  const img1 = document.getElementById('attack1');
+  const img2 = document.getElementById('attack2');
+  const overlay = document.getElementById('attackOverlay');
 
-  function makeBubble() {
-    const b = document.createElement('div');
-    b.classList.add('bubble');
+  // Step 1: click icon -> show first image
+  icon.addEventListener('click', () => {
+    if (step === 0) {
+      img1.classList.add('show');
+      step = 1;
+    }
+  });
 
-    const size = Math.random() * 12 + 8;
-    b.style.width = `${size}px`;
-    b.style.height = `${size}px`;
+  // Step 2: click first image -> show second image
+  img1.addEventListener('click', () => {
+    if (step === 1) {
+      img2.classList.add('show');
+      step = 2;
+    }
+  });
 
-    // keep close to Greyskull's head
-    b.style.left = `${Math.random() * 8 + 5}%`;
+  // Step 3: click second image -> trigger overlay
+  img2.addEventListener('click', () => {
+    if (step === 2) {
+      overlay.style.display = 'flex';
+      document.body.classList.add('attack-active');
+      step = 3;
+    }
+  });
 
-    // random but slightly faster animation
-    b.style.animationDuration = `${Math.random() * 2 + 4}s`;
-
-    container.appendChild(b);
-
-    // remove bubble when animation ends
-    setTimeout(() => b.remove(), 6000);
-  }
-
-  // make bubbles appear instantly on load
-  for (let i = 0; i < 20; i++) {
-    setTimeout(makeBubble, i * 100); // stagger first 20 bubbles right away
-  }
-
-  // continue spawning after that
-  setInterval(makeBubble, 250);
-</script>
-
-<script>
-  // Dream image fade-in sequence
-  const dreamImages = document.querySelectorAll('.dream-images img');
-  const greyskull = document.querySelector('.sleep-img');
-
-  greyskull.addEventListener('click', () => {
-    dreamImages.forEach((img, i) => {
-      setTimeout(() => img.classList.add('show'), i * 1000); // 1s delay each
-    });
+  // Step 4: click overlay -> close it
+  overlay.addEventListener('click', () => {
+    overlay.style.display = 'none';
+    document.body.classList.remove('attack-active');
   });
 </script>
 

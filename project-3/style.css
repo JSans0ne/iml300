@@ -495,3 +495,41 @@ body:has(.story-page) {
   height: auto;
   border-radius: 8px;
 }
+/* ===== Text-bump page ===== */
+body:has(.text-layer) {
+  background: #eaeaea;
+  overflow: hidden;
+  cursor: auto; /* reset any custom .cur cursor */
+}
+
+.text-layer {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 60%;
+  height: 60%;
+  color: #333;
+  font-family: "Courier New", monospace;
+  line-height: 1.6;
+  padding: 30px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+span.word {
+  display: inline-block;
+  transition: transform 5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.computer-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 3;
+  pointer-events: none;
+}
+.text-layer { z-index: 1; }
+canvas { z-index: 2; pointer-events: none; position: fixed; top: 0; left: 0; }
+.computer-frame { z-index: 3; pointer-events: none; }

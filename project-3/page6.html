@@ -1,141 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Paw Print Bump Demo 2</title>
-<style>
-  body {
-    background: #eaeaea;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: "Courier New", monospace;
-    overflow: hidden;
-  }
-
-  /* --- Mac frame container --- */
-  .mac {
-    position: relative;
-    width: 800px;
-    height: 600px;
-    background: #ccc;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-  }
-
-  /* --- Fake screen area --- */
-  .screen {
-    position: absolute;
-    top: 40px;
-    left: 60px;
-    width: 680px;
-    height: 420px;
-    background: #fefefe;
-    padding: 30px;
-    overflow: hidden;
-    color: #333;
-    border-radius: 8px;
-    line-height: 1.6;
-  }
-
-  p {
-    margin-bottom: 1em;
-  }
-
-  span.word {
-  display: inline-block;
-  transition: transform 5s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-
-
-  /* --- Paw prints --- */
-  .paw {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    background-image: url('https://cdn-icons-png.flaticon.com/512/616/616408.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 1;
-    pointer-events: none;
-    transform: translate(-50%, -50%) rotate(0deg);
-    animation: fadePaw 1.2s forwards;
-  }
-
-  @keyframes fadePaw {
-    0%   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-    70%  { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
-    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page 6 — Why Jonas is Lucky</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<div class="mac">
-  <div class="screen" id="screen">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae felis
-    vel lorem tempus placerat. Cras malesuada, ipsum ac tristique suscipit,
-    nulla tortor commodo mi, eget dapibus ex neque id nisl.</p>
-    <p>Vivamus tincidunt metus sit amet orci dignissim, non commodo neque
-    ultricies. Curabitur lacinia, enim sed rhoncus fringilla, risus lacus
-    tincidunt libero, eget posuere nulla erat nec velit.</p>
-    <p>Move your mouse across the screen to make your digital paws bump the
-    words. They’ll float away and then gently drift back into place.</p>
-  </div>
-</div>
+  <main class="story-page">
 
-<script>
-  const screen = document.getElementById('screen');
-  const paragraphs = screen.querySelectorAll('p');
-  const words = [];
+    <section class="text-block">
+      <p>I know it looks like I'm a spoiled lil'kit that has the life,<br>
+      but it wasn't too long ago that I was living on the streets.<br>
+      I've only been living with Jonas for four weeks and I couldn't be happier.<br>
+    Just imagine, of all the car engines in the world I could have hidden in, I choose his.<br>
+  Oh boy, did he ever LUCK OUT!</p>
+    </section>
 
-  // Wrap every word in a <span>
-  paragraphs.forEach(p => {
-    const text = p.textContent.split(' ');
-    p.innerHTML = text.map(w => `<span class="word">${w}</span>`).join(' ');
-    words.push(...p.querySelectorAll('.word'));
-  });
+    <section class="gallery">
+      <img src="assets/engine.jpg" alt="My engine with Greyskull Inside">
+      <img src="assets/grey-box.jpg" alt="Greyskull being rescued">
+    </section>
 
-  // Create paw prints + bump words
-  document.addEventListener('mousemove', e => {
-    // Create paw element at mouse position
-    const paw = document.createElement('div');
-    paw.className = 'paw';
-    paw.style.left = e.pageX + 'px';
-    paw.style.top = e.pageY + 'px';
-    paw.style.transform += ` rotate(${Math.random() * 60 - 30}deg)`;
-    document.body.appendChild(paw);
-    setTimeout(() => paw.remove(), 1200);
+    <section class="text-block">
+      <p>It was totally great to be off the streets, but I did NOT like that sink bath he forced me to take.<br>
+      I mean, sure I was covered in fleas and had so much dirt on me that he thought I was grey...<br>
+    BUT CATS HATE WATER. I definitely attacked his arms and legs like 15 times as revenge for this when he was least expecting it.</p>
+    </section>
 
-    // Check proximity to each word and bump it
-    words.forEach(word => {
-      const rect = word.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      const dx = e.clientX - cx;
-      const dy = e.clientY - cy;
-      const dist = Math.sqrt(dx*dx + dy*dy);
+    <section class="gallery">
+      <img src="assets/cat-bath1.jpg" alt="Greyskull resting at home">
+      <img src="assets/cat-bath2.jpg" alt="Greyskull happy and healthy">
+    </section>
 
-if (dist < 150) { // huge bump zone
-  const offsetX = (Math.random() - 0.5) * window.innerWidth * 1.5; // can go way off-screen
-  const offsetY = (Math.random() - 0.5) * window.innerHeight * 1.5;
-const rot = (Math.random() - 0.5) * 20; // spin multiple times
-  word.style.transform = `translate(${offsetX}px, ${offsetY}px) rotate(${rot}deg)`;
+    <section class="text-block">
+      <p>Now I get fed this stuff called "wet food" that is so dreamy.<br>
+        I also have crunchy food out for whenever I want it.<br>
+      Ever eaten a shoe? It does NOT taste as good as wet food. No way at all.<br>
+    You know I like sleeping, but I also like giving Jonas notes on his homework...<br>
+  and then basically like doing it for him when he complains about not having any ideas.<br>
+BOY DID HE GET LUCKY!</p>
+    </section>
+
+    <section class="gallery four-wide">
+  <img src="assets/notes1.jpg" alt="Greyskull sleeping">
+  <img src="assets/notes2.jpg" alt="Greyskull painting">
+  <img src="assets/notes3.jpg" alt="Happy Greyskull">
+  <img src="assets/notes4.jpg" alt="Greyskull title image">
+</section>
+
+<section class="text-block">
+  <p>I guess you could say I sure know how to pick'em. <br>
+    Jonas says he is looking forward to taking me to Vegas <br>
+    so I can help him choose numbers in something called Roulette.<br>
+  I dunno what that is, but as long as I keep getting wet food, I'm up for anything! </p>
+</section>
+
+<section class="gallery single-image">
+  <img src="assets/end-cat.jpg" alt="Greyskull resting peacefully">
+</section>
 
 
+  </main>
 
-        clearTimeout(word.resetTimer);
-        word.resetTimer = setTimeout(() => {
-          word.style.transform = 'translate(0,0) rotate(0deg)';
-        }, 2000);
-      }
-    });
-  });
-</script>
+  <!-- Paw buttons -->
+  <a href="page5.html" class="paw-btn back">
+    <img src="assets/paw-button-back.png" alt="Meow Back">
+  </a>
+
+
 </body>
 </html>

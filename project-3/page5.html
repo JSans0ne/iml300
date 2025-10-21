@@ -2,73 +2,91 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Page 5 — Greyskull’s Rescue Story</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Page 5 — Sleepy Dream Time</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <main class="story-page">
+  <main class="sleep-page">
+    <h1 class="sleep-title">It is really wild how after I go all crazy kitty mode, I'm so tired.<br>
+    There is nothing like a grrreat nap, amirite?!?<br>
+  I find my favorite spot and head on out to sleepy kitty city where I hang out with all my favorite things. <br>
+Click on my head so you can see what I'm dreaming about. </h1>
 
-    <section class="text-block">
-      <p>I know it looks like I'm a spoiled lil'kit that has the life,<br>
-      but it wasn't too long ago that I was living on the streets.<br>
-      I've only been living with Jonas for four weeks and I couldn't be happier.<br>
-    Just imagine, of all the car engines in the world I could have hidden in, I choose his.<br>
-  Oh boy, did he ever LUCK OUT!</p>
-    </section>
+    <div class="sleep-hero">
+  <img src="assets/grey-sleeps.png" alt="Greyskull sleeping" class="sleep-img">
+</div>
 
-    <section class="gallery">
-      <img src="assets/engine.jpg" alt="My engine with Greyskull Inside">
-      <img src="assets/grey-box.jpg" alt="Greyskull being rescued">
-    </section>
+<!-- Dream bubbles container -->
+<div class="dream-bubbles"></div>
 
-    <section class="text-block">
-      <p>It was totally great to be off the streets, but I did NOT like that sink bath he forced me to take.<br>
-      I mean, sure I was covered in fleas and had so much dirt on me that he thought I was grey...<br>
-    BUT CATS HATE WATER. I definitely attacked his arms and legs like 15 times as revenge for this when he was least expecting it.</p>
-    </section>
 
-    <section class="gallery">
-      <img src="assets/cat-bath1.jpg" alt="Greyskull resting at home">
-      <img src="assets/cat-bath2.jpg" alt="Greyskull happy and healthy">
-    </section>
+    <!-- Clouds -->
+<div class="cloud cloud-left"></div>
+<div class="cloud cloud-center"></div>
+<div class="cloud cloud-right"></div>
 
-    <section class="text-block">
-      <p>Now I get fed this stuff called "wet food" that is so dreamy.<br>
-        I also have crunchy food out for whenever I want it.<br>
-      Ever eaten a shoe? It does NOT taste as good as wet food. No way at all.<br>
-    You know I like sleeping, but I also like giving Jonas notes on his homework...<br>
-  and then basically like doing it for him when he complains about not having any ideas.<br>
-BOY DID HE GET LUCKY!</p>
-    </section>
-
-    <section class="gallery four-wide">
-  <img src="assets/notes1.jpg" alt="Greyskull sleeping">
-  <img src="assets/notes2.jpg" alt="Greyskull painting">
-  <img src="assets/notes3.jpg" alt="Happy Greyskull">
-  <img src="assets/notes4.jpg" alt="Greyskull title image">
-</section>
-
-<section class="text-block">
-  <p>I guess you could say I sure know how to pick'em. <br>
-    Jonas says he is looking forward to taking me to Vegas <br>
-    so I can help him choose numbers in something called Roulette.<br>
-  I dunno what that is, but as long as I keep getting wet food, I'm up for anything! </p>
-</section>
-
-<section class="gallery single-image">
-  <img src="assets/end-cat.jpg" alt="Greyskull resting peacefully">
-</section>
-
+<!-- Dream images that appear above the clouds -->
+<div class="dream-images">
+  <img src="assets/dream1.png" alt="Dream 1">
+  <img src="assets/dream2.png" alt="Dream 2">
+  <img src="assets/dream3.png" alt="Dream 3">
+</div>
 
   </main>
 
-  <!-- Paw buttons -->
+  <!-- Paw buttons (always on top) -->
   <a href="page4.html" class="paw-btn back">
     <img src="assets/paw-button-back.png" alt="Meow Back">
   </a>
+  <a href="page6.html" class="paw-btn next">
+    <img src="assets/paw-button-next.png" alt="Meow Next">
+  </a>
 
+<script>
+  const container = document.querySelector('.dream-bubbles');
+
+  function makeBubble() {
+    const b = document.createElement('div');
+    b.classList.add('bubble');
+
+    const size = Math.random() * 12 + 8;
+    b.style.width = `${size}px`;
+    b.style.height = `${size}px`;
+
+    // keep close to Greyskull's head
+    b.style.left = `${Math.random() * 8 + 5}%`;
+
+    // random but slightly faster animation
+    b.style.animationDuration = `${Math.random() * 2 + 4}s`;
+
+    container.appendChild(b);
+
+    // remove bubble when animation ends
+    setTimeout(() => b.remove(), 6000);
+  }
+
+  // make bubbles appear instantly on load
+  for (let i = 0; i < 20; i++) {
+    setTimeout(makeBubble, i * 100); // stagger first 20 bubbles right away
+  }
+
+  // continue spawning after that
+  setInterval(makeBubble, 250);
+</script>
+
+<script>
+  // Dream image fade-in sequence
+  const dreamImages = document.querySelectorAll('.dream-images img');
+  const greyskull = document.querySelector('.sleep-img');
+
+  greyskull.addEventListener('click', () => {
+    dreamImages.forEach((img, i) => {
+      setTimeout(() => img.classList.add('show'), i * 1000); // 1s delay each
+    });
+  });
+</script>
 
 </body>
 </html>
