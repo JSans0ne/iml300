@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Paw Print Bump Demo 2</title>
+<style>
+  body {
+    background: #eaeaea;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: "Courier New", monospace;
+    overflow: hidden;
+  }
+
+  /* --- Mac frame container --- */
+  .mac {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    background: #ccc;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  }
+
+  /* --- Fake screen area --- */
+  .screen {
+    position: absolute;
+    top: 40px;
+    left: 60px;
+    width: 680px;
+    height: 420px;
+    background: #fefefe;
+    padding: 30px;
+    overflow: hidden;
+    color: #333;
+    border-radius: 8px;
+    line-height: 1.6;
+  }
+
+  p {
+    margin-bottom: 1em;
+  }
+
+  span.word {
+  display: inline-block;
+  transition: transform 5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+
+
+  /* --- Paw prints --- */
+  .paw {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-image: url('https://cdn-icons-png.flaticon.com/512/616/616408.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 1;
+    pointer-events: none;
+    transform: translate(-50%, -50%) rotate(0deg);
+    animation: fadePaw 1.2s forwards;
+  }
+
+  @keyframes fadePaw {
+    0%   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    70%  { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+  }
+</style>
+</head>
+<body>
+
+<div class="mac">
+  <div class="screen" id="screen">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae felis
+    vel lorem tempus placerat. Cras malesuada, ipsum ac tristique suscipit,
+    nulla tortor commodo mi, eget dapibus ex neque id nisl.</p>
+    <p>Vivamus tincidunt metus sit amet orci dignissim, non commodo neque
+    ultricies. Curabitur lacinia, enim sed rhoncus fringilla, risus lacus
+    tincidunt libero, eget posuere nulla erat nec velit.</p>
+    <p>Move your mouse across the screen to make your digital paws bump the
+    words. They’ll float away and then gently drift back into place.</p>
+  </div>
+</div>
+
+<script>
+  const screen = document.getElementById('screen');
+  const paragraphs = screen.querySelectorAll('p');
+  const words = [];
+
+  // Wrap every word in a <span>
+  paragraphs.forEach(p => {
+    const text = p.textContent.split(' ');
+    p.innerHTML = text.map(w => `<span class="word">${w}</span>`).join(' ');
+    words.push(...p.querySelectorAll('.word'));
+  });
+
+  // Create paw prints + bump words
+  document.addEventListener('mousemove', e => {
+    // Create paw element at mouse position
+    const paw = document.createElement('div');
+    paw.className = 'paw';
+    paw.style.left = e.pageX + 'px';
+    paw.style.top = e.pageY + 'px';
+    paw.style.transform += ` rotate(${Math.random() * 60 - 30}deg)`;
+    document.body.appendChild(paw);
+    setTimeout(() => paw.remove(), 1200);
+
+    // Check proximity to each word and bump it
+    words.forEach(word => {
+      const rect = word.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = e.clientX - cx;
+      const dy = e.clientY - cy;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+
+if (dist < 150) { // huge bump zone
+  const offsetX = (Math.random() - 0.5) * window.innerWidth * 1.5; // can go way off-screen
+  const offsetY = (Math.random() - 0.5) * window.innerHeight * 1.5;
+  const rot = (Math.random() - 0.5) * 10; // spin multiple times
+  word.style.transform = `translate(${offsetX}px, ${offsetY}px) rotate(${rot}deg)`;
+
+
+
+        clearTimeout(word.resetTimer);
+        word.resetTimer = setTimeout(() => {
+          word.style.transform = 'translate(0,0) rotate(0deg)';
+        }, 2000);
+      }
+    });
+  });
+</script>
+</body>
+</html>
