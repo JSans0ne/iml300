@@ -533,3 +533,163 @@ span.word {
 .text-layer { z-index: 1; }
 canvas { z-index: 2; pointer-events: none; position: fixed; top: 0; left: 0; }
 .computer-frame { z-index: 3; pointer-events: none; }
+
+/* ===== PAGE 7 — CAT PHOTO BOOTH (SCOPED) ===== */
+body#page7 {
+  background: #000;
+  overflow: hidden;
+  margin: 0;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+body#page7 #cat-photo-booth {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  overflow: hidden;
+}
+
+/* ====== MAIN CAMERA STAGE ====== */
+body#page7 .booth-stage {
+  position: relative;
+  width: 80vw;
+  max-width: 1280px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Webcam feed - bottom layer */
+body#page7 #cameraFeed {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
+  z-index: 1;
+}
+
+/* Cat overlay - above camera */
+body#page7 #catOverlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Curtain overlay */
+body#page7 #curtainOverlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Take Photo Paw Button */
+body#page7 #takePhotoBtn {
+  position: absolute;
+  bottom: 4%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  cursor: pointer;
+  z-index: 4;
+  transition: transform 0.1s ease;
+}
+body#page7 #takePhotoBtn:hover {
+  transform: translateX(-50%) scale(1.05);
+}
+body#page7 #takePhotoBtn:active {
+  transform: translateX(-50%) scale(0.95);
+}
+
+/* Flash Frame */
+body#page7 #flashFrame {
+  position: absolute;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5;
+  transition: opacity 0.25s ease;
+}
+body#page7 #flashFrame.active {
+  opacity: 0.9;
+  animation: flash-blink 300ms ease-out forwards;
+}
+@keyframes flash-blink {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ====== PHOTO PREVIEW ====== */
+body#page7 .photo-preview {
+  position: absolute;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #000;
+  z-index: 6;
+}
+body#page7 .photo-preview img#photoResult {
+  width: 80vw;
+  max-width: 1280px;
+  border: 3px solid #ff0099;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+/* Retake & Download buttons */
+body#page7 #retakeBtn, 
+body#page7 #downloadBtn {
+  position: absolute;
+  width: 150px;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+  z-index: 7;
+}
+body#page7 #retakeBtn:hover, 
+body#page7 #downloadBtn:hover {
+  transform: scale(1.05);
+}
+body#page7 #retakeBtn:active, 
+body#page7 #downloadBtn:active {
+  transform: scale(0.95);
+}
+body#page7 #retakeBtn {
+  bottom: 4%;
+  left: 30%;
+}
+body#page7 #downloadBtn {
+  bottom: 4%;
+  right: 30%;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 900px) {
+  body#page7 #takePhotoBtn,
+  body#page7 #retakeBtn,
+  body#page7 #downloadBtn {
+    width: 100px;
+  }
+  body#page7 .cat-thumb {
+    width: 90px;
+  }
+}

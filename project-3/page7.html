@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page 7 — Cat Photo Booth</title>
+
+  <!-- Link to your shared stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body id="page7">
+
+
+  <!-- MAIN PHOTO BOOTH CONTAINER -->
+  <main id="cat-photo-booth">
+    <!-- Stage: where camera + overlays appear -->
+    <section class="booth-stage">
+      <!-- Live webcam feed -->
+      <video id="cameraFeed" autoplay playsinline muted></video>
+
+      <!-- Selected cat overlay -->
+      <img id="catOverlay" alt="Selected cat overlay" />
+
+      <!-- Curtain frame -->
+      <img id="curtainOverlay" src="assets/catbooth-overlay.png" alt="Curtain frame overlay" />
+
+      <!-- Flash frame -->
+      <div id="flashFrame"></div>
+
+      <!-- Take Photo Paw Button -->
+      <img id="takePhotoBtn" src="assets/pic-paw.png" alt="Take photo button" />
+    </section>
+
+    <!-- PREVIEW AREA (hidden until photo is taken) -->
+    <section class="photo-preview" id="photoPreview">
+      <img id="photoResult" alt="Your photo preview" />
+      <img id="downloadBtn" src="assets/download-paw.png" alt="Download photo button" />
+      <img id="retakeBtn" src="assets/retake-paw.png" alt="Retake photo button" />
+    </section>
+
+
+    <!-- Hidden working canvas -->
+    <canvas id="snapshotCanvas" style="display:none;"></canvas>
+  </main>
+
+  <!-- JavaScript -->
+  <script src="photobooth.js"></script>
+
+  <!-- Paw buttons (always on top) -->
+<a href="page6.html" class="paw-btn back">
+  <img src="assets/paw-button-back.png" alt="Meow Back">
+</a>
+
+
+</body>
+</html>
