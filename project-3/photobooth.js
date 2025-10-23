@@ -11,6 +11,9 @@ const photoResult = document.getElementById('photoResult');
 const downloadBtn = document.getElementById('downloadBtn');
 const retakeBtn = document.getElementById('retakeBtn');
 const snapshotCanvas = document.getElementById('snapshotCanvas');
+// global offset for cat alignment (same for preview + saved photo)
+const CAT_OFFSET_X = 50; // move right by 50px (tweak this number)
+
 
 let currentCat = null;
 let cameraStream = null;
@@ -57,32 +60,59 @@ function selectCat(catSrc) {
 function takePhoto() {
   if (!video.videoWidth || !video.videoHeight) return;
 
+  // flash animation
   flashFrame.classList.add('active');
   setTimeout(() => flashFrame.classList.remove('active'), 300);
 
   const canvas = snapshotCanvas;
   const ctx = canvas.getContext('2d');
-  const w = video.videoWidth;
-  const h = video.videoHeight;
+
+  // fixed photo resolution (matches booth preview)
+  const w = 1280;
+  const h = 720;
   canvas.width = w;
   canvas.height = h;
 
-  // Draw mirrored webcam feed
+  // --- Draw mirrored webcam feed WITHOUT stretching (object-fit: cover) ---
+  const srcW = video.videoWidth;
+  const srcH = video.videoHeight;
+  const canvasW = w;
+  const canvasH = h;
+  const srcAspect = srcW / srcH;
+  const canvasAspect = canvasW / canvasH;
+
+  let sx, sy, sWidth, sHeight;
+
+  if (srcAspect > canvasAspect) {
+    // video wider → crop sides
+    sHeight = srcH;
+    sWidth = canvasAspect * sHeight;
+    sx = (srcW - sWidth) / 2;
+    sy = 0;
+  } else {
+    // video taller → crop top/bottom
+    sWidth = srcW;
+    sHeight = sWidth / canvasAspect;
+    sx = 0;
+    sy = (srcH - sHeight) / 2;
+  }
+
   ctx.save();
-  ctx.translate(w, 0);
-  ctx.scale(-1, 1);
-  ctx.drawImage(video, 0, 0, w, h);
+  ctx.translate(canvasW, 0);
+  ctx.scale(-1, 1); // mirror horizontally
+  ctx.drawImage(video, sx, sy, sWidth, sHeight, 0, 0, canvasW, canvasH);
   ctx.restore();
 
-  // Draw cat using same ratio math
+  // --- Draw cat overlay (matches preview position) ---
   if (currentCat) {
     const catImg = new Image();
     catImg.onload = () => {
       const catWidth = w * CAT_WIDTH_RATIO;
       const catHeight = catImg.height * (catWidth / catImg.width);
-      const catX = w * CAT_X_OFFSET;
+      const catX = w * CAT_X_OFFSET + CAT_OFFSET_X; // horizontal offset for match
       const catY = h - catHeight + (h * CAT_Y_OFFSET);
       ctx.drawImage(catImg, catX, catY, catWidth, catHeight);
+
       drawCurtain(canvas, ctx, w, h);
     };
     catImg.src = currentCat;
@@ -91,7 +121,7 @@ function takePhoto() {
   }
 }
 
-// Helper — draw curtain overlay + show preview
+// --- Helper: Draw curtain overlay + show preview ---
 function drawCurtain(canvas, ctx, w, h) {
   const curtainImg = new Image();
   curtainImg.onload = () => {
@@ -100,6 +130,7 @@ function drawCurtain(canvas, ctx, w, h) {
   };
   curtainImg.src = curtainOverlay.src;
 }
+
 
 // ========== 4. SHOW PREVIEW ==========
 function showPreview(canvas) {

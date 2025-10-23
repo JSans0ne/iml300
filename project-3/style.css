@@ -534,7 +534,7 @@ span.word {
 canvas { z-index: 2; pointer-events: none; position: fixed; top: 0; left: 0; }
 .computer-frame { z-index: 3; pointer-events: none; }
 
-/* ===== PAGE 7 — CAT PHOTO BOOTH (SCOPED) ===== */
+/* ===== PAGE 7 — CAT PHOTO BOOTH (FINAL VERSION) ===== */
 body#page7 {
   background: #000;
   overflow: hidden;
@@ -547,7 +547,6 @@ body#page7 #cat-photo-booth {
   width: 100vw;
   height: 100vh;
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
   background: #000;
@@ -557,13 +556,23 @@ body#page7 #cat-photo-booth {
 /* ====== MAIN CAMERA STAGE ====== */
 body#page7 .booth-stage {
   position: relative;
-  width: 80vw;
-  max-width: 1280px;
-  aspect-ratio: 16 / 9;
+  width: 1280px;
+  height: 720px;
+  margin: 0 auto;
+  background: #000;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 8px;
+}
+
+/* Scale down gracefully if screen smaller */
+@media (max-width: 1300px) {
+  body#page7 .booth-stage {
+    transform: scale(0.8);
+    transform-origin: top center;
+  }
 }
 
 /* Webcam feed - bottom layer */
@@ -577,18 +586,19 @@ body#page7 #cameraFeed {
   z-index: 1;
 }
 
-/* Cat overlay - above camera */
+/* Cat overlay - anchored to bottom */
 body#page7 #catOverlay {
   position: absolute;
-  inset: 0;
+  bottom: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
-  object-fit: contain;
+  height: auto;
   z-index: 2;
   pointer-events: none;
 }
 
-/* Curtain overlay */
+
+/* Curtain overlay (frame) */
 body#page7 #curtainOverlay {
   position: absolute;
   inset: 0;
@@ -648,12 +658,14 @@ body#page7 .photo-preview {
   background: #000;
   z-index: 6;
 }
+
 body#page7 .photo-preview img#photoResult {
-  width: 80vw;
-  max-width: 1280px;
+  width: 1280px;
+  height: 720px;
   border: 3px solid #ff0099;
   border-radius: 12px;
   object-fit: contain;
+  max-width: 100%;
 }
 
 /* Retake & Download buttons */
@@ -688,8 +700,5 @@ body#page7 #downloadBtn {
   body#page7 #retakeBtn,
   body#page7 #downloadBtn {
     width: 100px;
-  }
-  body#page7 .cat-thumb {
-    width: 90px;
   }
 }
