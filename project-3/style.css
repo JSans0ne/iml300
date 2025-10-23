@@ -702,3 +702,29 @@ body#page7 #downloadBtn {
     width: 100px;
   }
 }
+body#page7 .photo-preview {
+  display: none;
+  position: absolute;
+  inset: 0;
+  background: #000;
+  z-index: 50;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+body#page7 .photo-preview img#photoResult {
+  width: 1280px;
+  height: 720px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+body#page7 #retakeBtn,
+body#page7 #downloadBtn {
+  position: absolute;
+  bottom: 4%;
+  width: 140px;
+  z-index: 60;
+  cursor: pointer;
+}
+body#page7 #retakeBtn { left: 30%; }
+body#page7 #downloadBtn { right: 30%; }

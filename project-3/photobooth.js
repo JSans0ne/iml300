@@ -11,17 +11,16 @@ const photoResult = document.getElementById('photoResult');
 const downloadBtn = document.getElementById('downloadBtn');
 const retakeBtn = document.getElementById('retakeBtn');
 const snapshotCanvas = document.getElementById('snapshotCanvas');
-// global offset for cat alignment (same for preview + saved photo)
-const CAT_OFFSET_X = 50; // move right by 50px (tweak this number)
-
 
 let currentCat = null;
 let cameraStream = null;
 
 // ======= EASY CAT POSITION CONTROLS =======
-const CAT_WIDTH_RATIO = 0.45;   // size relative to video width
-const CAT_X_OFFSET = 0.03;      // left offset (0 = flush left)
-const CAT_Y_OFFSET = -0.00;     // vertical offset (- = lower)
+// Controls cat size + position in both preview and final photo
+const CAT_WIDTH_RATIO = 0.45;   // how big cat is (0.45 = 45% of frame width)
+const CAT_X_OFFSET = 0.05;      // move right (0 = flush left, 0.05 = 5% from left)
+const CAT_Y_OFFSET = 0.00;      // 0 = bottom edge, positive = up, negative = lower
+
 
 // ========== 1. START CAMERA ==========
 async function startCamera() {
@@ -145,6 +144,7 @@ function retakePhoto() {
   photoPreview.style.display = 'none';
   document.querySelector('.booth-stage').style.display = 'flex';
 }
+
 
 // ========== 6. DOWNLOAD ==========
 function downloadPhoto() {
