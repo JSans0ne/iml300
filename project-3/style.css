@@ -1,27 +1,45 @@
-html, body {
-  height: 100%;
+/* ===== INDEX / COVER PAGE ===== */
+body {
   margin: 0;
+  background: #f6f6f6; /* same soft wall color as playroom */
 }
 
+/* main container centers everything */
 .cover {
-  background-image: url("assets/cat-title.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
-  width: 100%;
-  position: relative;
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #e794da;
+  overflow: hidden;
 }
 
+/* holds the title image */
+.cover-frame {
+  position: relative;
+  width: min(90vw, 1200px);  /* responsive but locked width */
+  aspect-ratio: 1622 / 1080; /* same as playroom */
+}
 
+/* title image */
+.cover-frame img.cover-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 
+/* paw button stays by Greyskull’s paw */
 .paw-button {
   position: absolute;
-  bottom: 3.5%;       /* adjust these to place it next to the real paw */
-  right: 35.5%;
-  display: block;
-  width: 150px;      /* adjust size if needed */
+  bottom: 13%;       /* adjust up/down if slightly off */
+  right: 38%;        /* adjust left/right if needed */
+  width: 12vw;       /* scales with screen */
+  max-width: 150px;
   transition: transform 0.2s ease;
+  z-index: 10;
 }
 
 .paw-button img {
@@ -33,6 +51,7 @@ html, body {
 .paw-button:hover {
   transform: scale(1.05);
 }
+
 
 /* ===== Global font style for all pages ===== */
 body {
