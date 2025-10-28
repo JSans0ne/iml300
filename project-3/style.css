@@ -13,6 +13,8 @@ html, body {
   position: relative;
 }
 
+
+
 .paw-button {
   position: absolute;
   bottom: 3.5%;       /* adjust these to place it next to the real paw */
@@ -753,6 +755,24 @@ body#playroom {
   align-items: center;
   background: #f6f6f6;
 }
+.playroom-scene {
+  position: relative;
+  width: 90vw;                 /* scales to 90% of viewport width */
+  aspect-ratio: 1622 / 1080;   /* keeps perfect image proportions */
+  margin: 0 auto;
+  background-image: url("assets/playroom.png");
+  background-size: contain;    /* full image always visible */
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+
+.playroom-scene img.playroom-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 
 .playroom-image {
   width: 100%;
@@ -784,6 +804,12 @@ body#playroom {
   top: 62%;      /* distance from top of screen */
   left: 71%;     /* distance from left of screen */
 }
+
+#computerLink {
+  top: 66%;
+  left: 32%;
+}
+
 
 /* ===== UNIVERSAL BACK PAW (BOTTOM-RIGHT) ===== */
 .paw-btn.back.right {
@@ -857,3 +883,223 @@ color: #000;
   z-index: 10000;     /* makes sure it’s in front of all other layers */
   pointer-events: none; /* so it doesn’t block clicks on the computer */
 }
+.playroom-scene {
+  position: relative;
+  width: 90vw;
+  aspect-ratio: 1622 / 1080;
+  margin: 0 auto;
+  background-image: url("assets/playroom-final.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.hotspot {
+  position: absolute;
+  display: block;
+  cursor: pointer;
+}
+
+/* === Playroom Hotspots === */
+#computer-link {
+  top: 24%;     /* vertical position from top of image */
+  left: 11%;    /* horizontal position from left of image */
+  width: 10%;   /* width of clickable box */
+  height: 10%;  /* height of clickable box */
+}
+#angry-link {
+  top: 44%;     /* vertical position from top of image */
+  left: 14%;    /* horizontal position from left of image */
+  width: 10%;   /* adjust size as needed */
+  height: 10%;
+}
+#bed-link {
+  top: 63%;     /* vertical position from top of image */
+  left: 25%;    /* horizontal position from left of image */
+  width: 11%;   /* width of clickable box */
+  height: 12%;  /* height of clickable box */
+}
+#bookshelf-link {
+  top: 75%;     /* vertical position from top of image */
+  left: 10%;    /* horizontal position from left of image */
+  width: 10%;   /* width of clickable box */
+  height: 15%;  /* height of clickable box */
+}
+#camera-link {
+  top: 24%;     /* vertical position from top of image */
+  left: 56%;    /* horizontal position from left of image */
+  width: 11%;   /* width of clickable box */
+  height: 13%;  /* height of clickable box */
+}
+#toybox-link {
+  top: 66%;
+  left: 69%;
+  width: 12%;
+  height: 10%;
+}
+#neuter-link {
+  top: 55%;     /* vertical position from top of image */
+  left: 48%;    /* horizontal position from left of image */
+  width: 10%;   /* width of clickable area */
+  height: 12%;  /* height of clickable area */
+}
+#funfact-link {
+  top: 41%;      /* adjust this first */
+  left: 74%;     /* adjust this second */
+  width: 11%;    /* make the box fit around the red cat icon */
+  height: 13%;   /* make the box fit vertically */
+}
+
+
+
+
+
+
+
+/* ===== PAGE 8: Neuter Facts ===== */
+body#page8 {
+  background-color: #dff0ff; /* soft light blue */
+  margin: 0;
+  font-family: system-ui, -apple-system, Arial, sans-serif;
+  color: #000; /* black text */
+}
+
+.neuter-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px 100px;
+}
+
+.neuter-img {
+  width: 80%;
+  max-width: 900px;
+  height: auto;
+  margin: 20px 0;
+  display: block;
+}
+
+.neuter-img.link {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.neuter-img.link:hover {
+  transform: scale(1.05);
+}
+
+.info-block {
+  max-width: 800px;
+  margin: 10px auto 30px;
+  padding: 0;          /* removes white box */
+  border-radius: 0;    /* no rounded edges */
+  background: none;    /* no background color */
+  line-height: 1.5;
+  font-size: 15pt;
+  font-weight: bold;
+  color: #000;         /* black text */
+}
+
+/* ===== PAGE 9: Random Fun Facts ===== */
+body#page9 {
+  background-color: #d9ffe5; /* soft mint */
+  margin: 0;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, Arial, sans-serif;
+}
+
+/* Full-page container */
+.funfact-page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Each fun fact image (placed randomly by JS) */
+.funfact {
+  position: absolute;
+  width: 180px;
+  height: auto;
+  cursor: pointer;
+  transition: all 0.6s ease;
+  z-index: 1;
+}
+
+/* Clicked image — enlarge and center */
+.funfact.active {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  max-width: 50vw;     /* smaller, stays readable */
+  max-height: 70vh;
+  z-index: 9999;
+  object-fit: contain;
+  box-shadow: 0 0 30px 20px rgba(255, 255, 255, 0.4);
+  transition: all 0.4s ease;
+  margin: 0;            /* ensures no layout shift */
+  display: block;       /* eliminates inline quirks */
+}
+
+/* ===== Page 9: Header Title and Text ===== */
+.funfact-header {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 5;
+}
+
+.funfact-title {
+  width: 45vw;       /* scales nicely on all screens */
+  max-width: 600px;
+  height: auto;
+  display: block;
+  margin: 0 auto 10px;
+}
+
+.funfact-text {
+  font-size: 16pt;
+  font-weight: bold;
+  color: #21324f;
+  margin: 0;
+}
+
+
+
+/* Dim others while one is active */
+.funfact-page:has(.funfact.active) .funfact:not(.active) {
+  opacity: 0.3;
+  filter: blur(2px);
+  transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+/* Universal back paw (bottom-right) */
+.paw-btn.back.right {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 100px;
+  height: auto;
+  z-index: 10000;
+  transition: transform 0.2s ease;
+}
+
+.paw-btn.back.right:hover {
+  transform: scale(1.1);
+}
+
+
+
+/* Back Paw Button */
+.paw-btn.back.right {
+  bottom: 30px;
+  right: 30px;
+  position: fixed;
+  z-index: 2000;
+}
+
