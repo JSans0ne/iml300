@@ -322,10 +322,10 @@ body:has(.sleep-page) {
 }
 
 /* ===== Page 4: Custom Paw Button Position ===== */
-body:has(.sleep-page) .paw-btn.back {
-  left: 19%;     /* moves it right toward center */
-  bottom: 30px;  /* slightly above Greyskull */
-}
+/*body:has(.sleep-page) .paw-btn.back {
+  /*left: 19%;     /* moves it right toward center */
+  /*bottom: 30px;  /* slightly above Greyskull */
+/*}
 /* ===== Dream Bubbles ===== */
 .dream-bubbles {
   position: fixed;
@@ -504,17 +504,20 @@ body:has(.text-layer) {
 
 .text-layer {
   position: absolute;
-  top: 20%;
-  left: 20%;
-  width: 60%;
-  height: 60%;
-  color: #333;
+  top: 15%;            /* centers text better inside monitor */
+  left: 14%;           /* small margin so text doesn’t hit the left edge */
+  width: 75%;          /* gives more room so it doesn’t cut off early */
+  height: 70%;         /* slightly taller, fits the visible screen area */
+  color: #000;         /* clean black text */
   font-family: "Courier New", monospace;
   line-height: 1.6;
-  padding: 30px;
-  overflow: hidden;
+  padding: 15px;       /* smaller padding for better balance */
+  overflow: hidden;    /* keeps everything tidy, no scrollbars */
   z-index: 1;
+  text-align: center;  /* centers the text nicely */
 }
+
+
 
 span.word {
   display: inline-block;
@@ -733,3 +736,124 @@ body#page7 #downloadBtn {
 }
 body#page7 #retakeBtn { left: 30%; }
 body#page7 #downloadBtn { right: 30%; }
+
+/* ===== PAGE: PLAYROOM ===== */
+body#playroom {
+  background: #f6f6f6; /* soft neutral wall color */
+  margin: 0;
+  overflow-x: hidden;
+  font-family: system-ui, -apple-system, Arial, sans-serif;
+}
+
+.playroom-container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f6f6f6;
+}
+
+.playroom-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  max-width: none;
+}
+/* --- Clickable icons on the Playroom image --- */
+.icon-button {
+  position: absolute;
+  display: block;
+  width: 80px;       /* adjust size */
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.icon-button img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.icon-button:hover {
+  transform: scale(1.1);
+}
+/* Position of each icon */
+#toyBoxLink {
+  top: 62%;      /* distance from top of screen */
+  left: 71%;     /* distance from left of screen */
+}
+
+/* ===== UNIVERSAL BACK PAW (BOTTOM-RIGHT) ===== */
+.paw-btn.back.right {
+  bottom: 30px;   /* distance from bottom */
+  right: 30px;    /* distance from right */
+  left: auto;     /* disable left position */
+}
+/* ===== PAGE 3: Computer Text-Bump ===== */
+body:has(.computer-container) {
+  background: #000;                    /* black background like a dark room */
+  display: flex;                       /* center horizontally & vertically */
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;                    /* hide scrollbars */
+}
+
+/* Lock the interactive screen to a fixed ratio and max size */
+.computer-container {
+  position: relative;
+  width: 120vw;          /* responsive downscaling */
+  max-width: 1280px;    /* max size - never larger than this */
+  aspect-ratio: 16 / 9; /* keeps perfect shape like a monitor */
+  overflow: hidden;
+  background: #eaeaea;  /* light gray, same as before */
+  border-radius: 8px;   /* soft corners (optional) */
+}
+
+/* The p5 canvas fills the container exactly */
+canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none; /* lets mouse pass through */
+}
+
+/* Text inside the "screen" */
+.text-layer {
+  position: absolute;
+  inset: 10%;            /* adds inner margin inside frame */
+color: #000;
+  font-family: "Courier New", monospace;
+  font-size: 15pt;
+  line-height: 1.6;
+  overflow: hidden;
+  z-index: 2;
+  text-align: center;
+}
+
+/* Overlay frame image */
+.computer-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 3;
+  pointer-events: none;
+}
+/* ===== PAGE 3: Cat in Front of Computer ===== */
+.cat-front {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 25vw;        /* adjust to change cat size */
+  max-width: 500px;   /* prevents it from getting too big */
+  z-index: 10000;     /* makes sure it’s in front of all other layers */
+  pointer-events: none; /* so it doesn’t block clicks on the computer */
+}

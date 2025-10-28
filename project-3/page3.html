@@ -3,45 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Page 3 - Text Bump</title>
+  <title>Page 3 — Text Bump</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
+  <!-- 💡 NEW WRAPPER STARTS HERE -->
+  <div class="computer-container">
 
-  <!-- Text layer that contains your paragraphs -->
-  <div class="text-layer" id="screen">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae felis
-    vel lorem tempus placerat. Cras malesuada, ipsum ac tristique suscipit,
-    nulla tortor commodo mi, eget dapibus ex neque id nisl.</p>
+    <!-- Text layer that contains your paragraphs -->
+    <div class="text-layer" id="screen">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae felis
+      vel lorem tempus placerat. Cras malesuada, ipsum ac tristique suscipit,
+      nulla tortor commodo mi, eget dapibus ex neque id nisl.</p>
 
-    <p>Vivamus tincidunt metus sit amet orci dignissim, non commodo neque
-    ultricies. Curabitur lacinia, enim sed rhoncus fringilla, risus lacus
-    tincidunt libero, eget posuere nulla erat nec velit.</p>
+      <p>Vivamus tincidunt metus sit amet orci dignissim, non commodo neque
+      ultricies. Curabitur lacinia, enim sed rhoncus fringilla, risus lacus
+      tincidunt libero, eget posuere nulla erat nec velit.</p>
 
-    <p>Move your mouse across the screen to make your digital paws bump the
-    words. They’ll float away and then gently drift back into place.</p>
+      <p>Move your mouse across the screen to make your digital paws bump the
+      words. They’ll float away and then gently drift back into place.</p>
+    </div>
+
+    <!-- PNG overlay of the computer frame -->
+    <img src="assets/Cmptr-text.png" class="computer-frame" alt="Computer frame">
+
   </div>
+  <!-- 💡 NEW WRAPPER ENDS HERE -->
 
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
-<script src="cat-paws.js"></script>
-<script src="text-bump.js"></script>
-
-
-  <!-- PNG overlay of the computer frame -->
-  <img src="assets/Cmptr-text.png" class="computer-frame" alt="Computer frame">
-
-  <!-- Same JavaScript from before -->
+  <script src="cat-paws.js"></script>
   <script src="text-bump.js"></script>
 
-  <!-- === Navigation Paw Buttons === -->
-<a href="page2.html" class="paw-btn back">
-  <img src="assets/paw-button-back.png" alt="Meow Back">
-</a>
+  <!-- Single Back Paw Button (bottom-right) -->
+  <a href="playroom.html" class="paw-btn back right">
+    <img src="assets/paw-button-back.png" alt="Back to Playroom">
+  </a>
+<img src="assets/cat-monitor.png" alt="Cat watching computer" class="cat-front">
 
-<a href="page4.html" class="paw-btn next">
-  <img src="assets/paw-button-next.png" alt="Meow Next">
-</a>
 
 </body>
 </html>
