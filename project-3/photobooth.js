@@ -20,7 +20,7 @@ let cameraStream = null;
 const CAT_WIDTH_RATIO = 0.45;   // how big cat is (0.45 = 45% of frame width)
 const CAT_X_OFFSET = 0.05;      // move right (0 = flush left, 0.05 = 5% from left)
 const CAT_Y_OFFSET = 0.00;      // 0 = bottom edge, positive = up, negative = lower
-
+const CAT_OFFSET_X = 0;
 
 // ========== 1. START CAMERA ==========
 async function startCamera() {

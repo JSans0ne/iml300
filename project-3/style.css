@@ -638,13 +638,18 @@ body#page7 #flashFrame {
   transition: opacity 0.25s ease;
 }
 body#page7 #flashFrame.active {
-  opacity: 0.9;
-  animation: flash-blink 300ms ease-out forwards;
+  opacity: 1;
+  background: white;
+  animation: flash-blink 500ms ease-out forwards;
 }
+
 @keyframes flash-blink {
-  0% { opacity: 0; }
-  10% { opacity: 1; }
+  0%   { opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
   100% { opacity: 0; }
+}
+
 }
 
 /* ====== PHOTO PREVIEW ====== */
