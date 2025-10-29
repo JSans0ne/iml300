@@ -236,7 +236,11 @@ body:has(.attack-page) {
 /* pleasant light blue / purplish-blue background */
 body:has(.sleep-page) {
   background: linear-gradient(180deg, #eaf2ff 0%, #e3ecff 60%, #dde7ff 100%);
+  background-repeat: no-repeat;     /* stops repeating */
+  background-attachment: fixed;     /* pins to viewport */
+  background-size: 100% 100%;       /* fills the entire screen once */
 }
+
 
 /* page layout */
 .sleep-page {
@@ -460,7 +464,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ===== Page 5: Rescue Story ===== */
 body:has(.story-page) {
-  background-color: #000;      /* black background */
+  background-color: #3b0a0a;      /* black background */
   color: #fff;                 /* white text */
   font-weight: bold;           /* match other pages */
   font-size: 15pt;             /* same size as rest */
@@ -1097,6 +1101,17 @@ body#page9 {
   transition: opacity 0.4s ease, filter 0.4s ease;
 }
 
+
+<script>
+  const trigger = document.getElementById("trigger-word");
+  const image = document.getElementById("hidden-image");
+
+  trigger.addEventListener("click", () => {
+    image.classList.toggle("show");
+  });
+</script>
+
+
 /* Universal back paw (bottom-right) */
 .paw-btn.back.right {
   position: fixed;
@@ -1122,3 +1137,70 @@ body#page9 {
   z-index: 2000;
 }
 
+/* ===== Page 5: Sparkling Trigger + Hidden Image ===== */
+#trigger-word {
+  color: goldenrod;
+  font-weight: 900;
+  font-size: 1.3em;  /* smaller so it fits better */
+  cursor: pointer;
+  position: relative;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.7);
+  overflow: hidden;
+  display: inline-block;
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+
+/* Subtle pulsing brightness */
+@keyframes sparkle {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.5); }
+}
+
+/* Traveling sparkle glint */
+#trigger-word::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-20deg);
+  animation: glint 2.5s infinite;
+}
+
+@keyframes glint {
+  0% { left: -50%; }
+  100% { left: 120%; }
+}
+
+#trigger-word:hover {
+  transform: scale(1.15);
+  text-shadow: 0 0 14px rgba(255, 240, 100, 1);
+}
+
+
+/* ===== Hidden Image (dream fade-in) ===== */
+#hidden-image {
+  position: fixed;
+  top: 56%; /* slightly lower to make room above */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw;
+  max-width: 1100px;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  z-index: 50;
+  pointer-events: none;
+  filter: drop-shadow(0 0 12px rgba(255, 223, 150, 0.7))
+          drop-shadow(0 0 20px rgba(255, 215, 0, 0.4)); /* sparkle edge glow */
+}
+#hidden-image.show {
+  opacity: 1;
+}
