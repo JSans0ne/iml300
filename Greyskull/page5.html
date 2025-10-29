@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Greyskull — Sleepy Dream Time</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=2" />
 </head>
 <body>
 
@@ -18,11 +18,12 @@
       Click on my head so you can see what I'm dreaming about.
     </h1>
 
+    <!-- Sleeping Greyskull -->
     <div class="sleep-hero">
       <img src="assets/grey-sleeps.png" alt="Greyskull sleeping" class="sleep-img">
     </div>
 
-    <!-- Hidden image that fades in when trigger phrase clicked -->
+    <!-- Hidden dream image (appears when trigger clicked) -->
     <img id="hidden-image" src="assets/sleep-city.png" alt="Sleepy City Dream">
 
     <!-- Dream bubbles container -->
@@ -77,31 +78,16 @@
     });
   </script>
 
-  <!-- Trigger sparkle + hidden image fade -->
+  <!-- Sparkling trigger + hidden dream image -->
   <script>
-    const trigger = document.getElementById("trigger-word");
-    const image = document.getElementById("hidden-image");
-    trigger.addEventListener("click", () => {
-      image.classList.toggle("show");
+    window.addEventListener("DOMContentLoaded", () => {
+      const trigger = document.getElementById("trigger-word");
+      const image = document.getElementById("hidden-image");
+      trigger.addEventListener("click", () => {
+        image.classList.toggle("show");
+      });
     });
   </script>
-
-  <!-- Background lullaby -->
-  <audio id="lullaby" src="assets/lullaby.mp3" autoplay loop></audio>
-  <script>
-    const lullaby = document.getElementById("lullaby");
-    lullaby.volume = 0.25;
-  </script>
-
-<script>
-  const trigger = document.getElementById("trigger-word");
-  const image = document.getElementById("hidden-image");
-  trigger.addEventListener("click", () => {
-    image.classList.toggle("show");
-  });
-</script>
-</body>
-</html>
 
 </body>
 </html>
