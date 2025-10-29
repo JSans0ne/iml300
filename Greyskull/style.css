@@ -1102,14 +1102,6 @@ body#page9 {
 }
 
 
-<script>
-  const trigger = document.getElementById("trigger-word");
-  const image = document.getElementById("hidden-image");
-
-  trigger.addEventListener("click", () => {
-    image.classList.toggle("show");
-  });
-</script>
 
 
 /* Universal back paw (bottom-right) */
