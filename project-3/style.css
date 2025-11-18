@@ -1,0 +1,42 @@
+/* Make sure CSS loads */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+/* Each section is a full-screen page */
+.panel {
+  height: 100vh;              /* one full screen tall */
+  width: 100%;                /* full width */
+  padding: 40px;              /* space inside */
+  box-sizing: border-box;     /* padding doesn't break the layout */
+
+  border: 1px solid red;      /* TEMPORARY: so you can SEE it works */
+}
+
+/* Breath widget: fixed on the right side, mid-screen */
+#breath-widget {
+  width: 250px;
+  height: 250px;
+
+  opacity: 0;                /* hidden at first */
+  pointer-events: none;      /* can't click until visible */
+
+  position: relative;        /* scrolls normally at first */
+  margin-left: auto;
+  margin-top: 20px;
+
+  background: transparent;
+  transition: opacity 0.4s ease;
+}
+#breath-widget.fixed {
+  position: fixed;
+  top: 50%;
+  right: 40px;
+  transform: translateY(-50%);
+
+  opacity: 1;
+  pointer-events: auto;       /* clickable again */
+}
+
