@@ -3,20 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <title>Welcome</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css" />
+
+  <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="script.js"></script>
+
+  <!-- Fade Logic -->
+  <script src="script.js" defer></script>
 </head>
 
 <body>
 
-  <section class="page" id="welcome">
-    <h1>Welcome</h1>
-    <p>You’re invited to take a calming walk.</p>
+  <!-- Full page gradient background -->
+  <div class="gradient-bg">
 
-    <!-- CLICK TO BEGIN -->
-    <a class="next-button" href="prepare.html">Begin</a>
-  </section>
+    <section id="welcome-page">
+
+      <!-- LOCKED LAYOUT WRAPPER (prevents ANY movement) -->
+      <div id="welcome-layout-lock">
+
+        <!-- 1. TITLE (fades in) -->
+        <h1 id="welcome-title">WELCOME</h1>
+
+        <!-- 2. SUBTITLE + BUTTON AREA (fixed height, NO movement) -->
+        <div id="welcome-stack">
+
+          <!-- Subtitle fades in second -->
+          <h2 id="welcome-sub">To Your Space to Find Calm</h2>
+
+          <!-- Button fades in third -->
+          <a id="walk-button-container" href="prepare.html">
+            <div id="walk-circle"></div>
+            <div id="walk-text">Let’s Take A Walk</div>
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
 
 </body>
 </html>

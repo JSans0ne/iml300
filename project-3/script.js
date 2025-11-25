@@ -1,13 +1,53 @@
-// ===========================
-// SIMPLE BREATH WIDGET - WORKING
-// ===========================
+/* =========================================================
+   GLOBAL FADE SETTINGS
+   ========================================================= */
+
+const fadeTime = 2000; // 2 seconds – adjust to change overall feel
+
+
+
+/* =========================================================
+   INDEX PAGE FADE SEQUENCE — FINAL
+   ========================================================= */
+
+$(document).ready(function () {
+
+  // Only run on the index page
+  if ($("#welcome-page").length) {
+
+    // 1. Fade in WELCOME
+    $("#welcome-title").fadeIn(fadeTime);
+
+    // 2. Fade in SUBTITLE
+    $("#welcome-sub")
+      .delay(fadeTime * 0.8)
+      .fadeIn(fadeTime);
+
+    // 3. Fade in BUTTON after subtitle
+    $("#walk-button-container")
+      .delay(fadeTime * 1.6)
+      .fadeIn(fadeTime);
+  }
+
+});
+
+
+
+/* =========================================================
+   WALK PAGE — BREATH WIDGET (P5.js)
+   ========================================================= */
+
+function isWalkPage() {
+  return window.location.pathname.includes("walk.html");
+}
 
 let isBreathing = false;
 let innerSize = 40;
 let grow = true;
 
 function setup() {
-  // Make a canvas inside the widget div
+  if (!isWalkPage()) return;
+
   let canvas = createCanvas(250, 250);
   canvas.parent("breath-widget");
 
@@ -16,6 +56,8 @@ function setup() {
 }
 
 function draw() {
+  if (!isWalkPage()) return;
+
   background(255);
 
   // Outer circle
@@ -29,26 +71,27 @@ function draw() {
   noStroke();
   circle(width / 2, height / 2, innerSize);
 
-  // BEFORE CLICK – show "click"
+  // Before click
   if (!isBreathing) {
     fill(0);
     text("click", width / 2, height / 2);
   }
 
-  // AFTER CLICK – pulse animation
+  // Pulse animation
   if (isBreathing) {
     if (grow) {
-      innerSize += .75;
+      innerSize += 0.75;
       if (innerSize >= 180) grow = false;
     } else {
-      innerSize -= .75;
+      innerSize -= 0.75;
       if (innerSize <= 40) grow = true;
     }
   }
 }
 
 function mousePressed() {
-  // Only activate if clicking inside the widget
+  if (!isWalkPage()) return;
+
   let insideCanvas =
     mouseX >= 0 && mouseX <= width &&
     mouseY >= 0 && mouseY <= height;
@@ -57,14 +100,3 @@ function mousePressed() {
     isBreathing = true;
   }
 }
-window.addEventListener('scroll', () => {
-  const start = document.getElementById("start");
-  const widget = document.getElementById("breath-widget");
-
-  const rect = start.getBoundingClientRect();
-
-  // When the START section reaches halfway of the screen
-  if (rect.top <= window.innerHeight * 0.5) {
-    widget.classList.add("fixed");
-  }
-});
