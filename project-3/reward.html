@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Reward Space</title>
-  </head>
-  <body>
-    <h1>Interactive Reward Space</h1>
-    <p>Placeholder — this will become the beautiful interactive environment.</p>
+<head>
+  <meta charset="UTF-8" />
+  <title>Reward Space</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- Placeholder for your p5.js / WebGL / three.js canvas -->
-    <div id="canvas-container">
-      <!-- Your script will attach a canvas here later -->
-    </div>
-  </body>
+  <!-- p5.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.min.js"></script>
+
+  <!-- your personal sketch -->
+  <script src="sketch.js"></script>
+
+  <script src="script.js"></script>
+</head>
+
+<body>
+
+  <section class="page" id="reward">
+    <h1>Your Calming Space</h1>
+    <p>Explore. Draw. Relax.</p>
+
+    <!-- p5 canvas attaches here -->
+    <div id="canvas-container"></div>
+
+    <a class="next-button" href="resources.html">Resources</a>
+  </section>
+
+</body>
 </html>
