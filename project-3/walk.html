@@ -3,62 +3,62 @@
 <head>
   <meta charset="UTF-8" />
   <title>The Walk</title>
+
+  <!-- Main styles -->
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="script.js"></script>
+
+  <!-- Project script -->
+  <script src="script.js" defer></script>
 </head>
 
-<body>
-
-  <!-- FIXED BREATH WIDGET (VISIBLE THROUGHOUT THE WALK) -->
-  <div id="breath-widget">
-    <!-- JS animation will be added later -->
-    <div class="breath-circle"></div>
+<body class="walk-page">
+  <!-- BREATH WIDGET CONTAINER (p5 attaches inside #breath-widget) -->
+  <div id="breath-widget-container">
+    <div id="breath-widget"></div>
   </div>
 
-  <!-- START OF LONG SCROLL EXPERIENCE -->
-  <section class="panel" id="scene1">
-    <h2>Scene 1 – City</h2>
-    <p>Placeholder scene content.</p>
-  </section>
+  <!-- MAIN WALK WRAPPER -->
+  <main class="walk-wrapper">
+    <!-- 1: CITY -->
+    <section class="scene scene-city scene-height-medium"></section>
 
-  <section class="panel" id="scene2">
-    <h2>Scene 2 – Empty Road</h2>
-    <p>Placeholder scene content.</p>
-  </section>
+    <!-- 2: ROAD -->
+    <section class="scene scene-road scene-height-medium"></section>
 
-  <section class="panel" id="scene3">
-    <h2>Scene 3 – Forest Path</h2>
-    <p>Placeholder scene content.</p>
-  </section>
+    <!-- 3: FOREST PATH (TALL) -->
+    <section class="scene scene-path scene-height-tall"></section>
 
-  <section class="panel" id="scene4">
-    <h2>Scene 4 – Autumn Field</h2>
-    <p>Placeholder scene content.</p>
-  </section>
+    <!-- 4: AUTUMN -->
+    <section class="scene scene-autumn scene-height-medium"></section>
 
-  <section class="panel" id="scene5">
-    <h2>Scene 5 – Snow Field</h2>
-    <p>Placeholder scene content.</p>
-  </section>
+    <!-- 5: SNOW (TALL) -->
+    <section class="scene scene-snow scene-height-tall"></section>
 
-  <section class="panel" id="scene6">
-    <h2>Scene 6 – Rainstorm</h2>
-    <p>Placeholder scene content.</p>
-  </section>
+    <!-- 6: STORM -->
+    <section class="scene scene-storm scene-height-medium"></section>
 
-  <section class="panel" id="scene7">
-    <h2>Scene 7 – River Calm</h2>
-    <p>Placeholder scene content.</p>
-  </section>
+    <!-- 7: RAIN (STANDARD HEIGHT) -->
+    <section class="scene scene-rain scene-height-standard"></section>
 
-  <!-- END OF WALK -->
-  <section class="panel" id="end-of-walk">
-    <h2>You’ve Reached Calm</h2>
-    <p>Take a moment. When you’re ready, continue.</p>
+    <!-- 8: PUDDLE (TALL) -->
+    <section class="scene scene-puddle scene-height-tall"></section>
 
-    <a class="next-button" href="calm.html">Continue</a>
-  </section>
+    <!-- 9: RIVER (TALL) -->
+    <section class="scene scene-river scene-height-tall"></section>
 
+    <!-- 10: FINAL GRADIENT SCENE (CROSSES FROM RIVER) -->
+    <section class="scene scene-gradient" id="final-gradient">
+      <div class="final-message">
+        <h2 class="final-title">Welcome Back to Calm</h2>
+        <button class="final-button" id="to-calm-page">
+          Move Forward When Ready
+        </button>
+      </div>
+    </section>
+  </main>
 </body>
 </html>

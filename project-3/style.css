@@ -10,6 +10,7 @@ html, body {
   overflow-x: hidden;
 }
 
+/* (INDEX PAGE CONTAINER, SAFE TO KEEP) */
 #welcome-page {
   height: 100vh;
   width: 100%;
@@ -17,14 +18,11 @@ html, body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  #welcome-page {
   color: white;
 }
 
-}
-
 /* =========================================================
-   GRADIENT BACKGROUND — animation-ready
+   INDEX GRADIENT BACKGROUND (SAFE TO KEEP)
    ========================================================= */
 
 .gradient-bg {
@@ -38,11 +36,9 @@ html, body {
   align-items: center;
 }
 
-/* Text color for index page */
 #welcome-page {
   color: white;
 }
-
 
 @keyframes colorCycle {
   0%   { background: linear-gradient(180deg, #4B086D, #ACC0FE); }
@@ -51,23 +47,19 @@ html, body {
 }
 
 /* =========================================================
-   LAYOUT LOCK — THIS PREVENTS ALL JUMPING
+   INDEX LAYOUT LOCK (SAFE TO KEEP)
    ========================================================= */
 
-/* Locks entire hero section so NOTHING moves */
 #welcome-layout-lock {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-
-  /* Moves hero slightly above center */
   margin-top: -10vh;
 }
 
-/* Locks subtitle + button area so they never push WELCOME */
 #welcome-stack {
-  height: 230px;  /* <<< THIS guarantees no layout shift */
+  height: 230px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -75,7 +67,7 @@ html, body {
 }
 
 /* =========================================================
-   TITLE + SUBTITLE
+   INDEX TITLE + SUBTITLE
    ========================================================= */
 
 #welcome-title {
@@ -83,21 +75,21 @@ html, body {
   font-weight: 700;
   letter-spacing: 0.05em;
   margin: 0;
-  display: none;  /* fade-in controlled by JS */
+  display: none;
 }
 
 #welcome-sub {
   font-size: 2.2rem;
   margin: 20px 0 40px;
-  display: none;  /* fade-in controlled by JS */
+  display: none;
 }
 
 /* =========================================================
-   SATURN-STYLE BUTTON
+   SATURN-STYLE BUTTON (INDEX)
    ========================================================= */
 
 #walk-button-container {
-  display: none;  /* fade-in controlled by JS */
+  display: none;
   position: relative;
   width: 200px;
   height: 110px;
@@ -111,7 +103,6 @@ html, body {
   background-color: #A3B5A1;
   border: 4px solid #6d7a6c;
   border-radius: 50%;
-
   position: absolute;
   top: 50%;
   left: 50%;
@@ -131,7 +122,7 @@ html, body {
 }
 
 /* =========================================================
-   BREATH WIDGET (unchanged)
+   BREATH WIDGET (GENERIC STYLING)
    ========================================================= */
 
 #breath-widget {
@@ -150,7 +141,7 @@ html, body {
 }
 
 /* =========================================================
-   OTHER PAGES
+   NEXT BUTTON (OTHER PAGES)
    ========================================================= */
 
 .next-button {
@@ -166,4 +157,160 @@ html, body {
 
 .next-button:hover {
   background: #5C0A87;
+}
+
+/* =========================================================
+   WALK PAGE LAYOUT + SCENES
+   ========================================================= */
+
+.walk-page {
+  /* body hook for JS & page-specific styles */
+}
+
+.walk-wrapper {
+  position: relative;
+}
+
+/* Base scene styling */
+.scene {
+  width: 100%;
+  min-height: 100vh;                 /* base height */
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  opacity: 0;                        /* start invisible */
+  transition: opacity 1.5s ease-in-out;
+}
+
+/* Activated by IntersectionObserver */
+.scene.active {
+  opacity: 1;
+}
+
+/* Height variants (approximate scroll length) */
+.scene-height-standard {
+  min-height: 100vh;
+}
+
+.scene-height-medium {
+  min-height: 130vh;
+}
+
+.scene-height-tall {
+  min-height: 180vh;
+}
+
+/* =========================================================
+   WALK PAGE — BACKGROUND IMAGES
+   (Ensure these files exist in: ./assets/)
+   ========================================================= */
+
+.scene-city {
+  background-image: url("assets/city.jpg");
+}
+
+.scene-road {
+  background-image: url("assets/road.jpg");
+}
+
+.scene-path {
+  background-image: url("assets/path.jpg");
+}
+
+.scene-autumn {
+  background-image: url("assets/autumn.jpg");
+}
+
+.scene-snow {
+  background-image: url("assets/snow.jpg");
+}
+
+.scene-storm {
+  background-image: url("assets/storm.jpg");
+}
+
+.scene-rain {
+  background-image: url("assets/rain.jpg");
+}
+
+.scene-puddle {
+  background-image: url("assets/puddle.jpg");
+}
+
+.scene-river {
+  background-image: url("assets/river.jpg");
+}
+
+/* =========================================================
+   WALK PAGE — FINAL GRADIENT SCENE
+   ========================================================= */
+
+.scene-gradient {
+  min-height: 1500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, #FEA858, #ED765E);
+}
+
+.final-message {
+  text-align: center;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+
+/* When JS adds .show-final-text to body.walk-page */
+.walk-page.show-final-text .final-message {
+  opacity: 1;
+}
+
+.final-title {
+  font-family: inherit;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+}
+
+/* Button that appears 2s after text fades in */
+.final-button {
+  margin-top: 1rem;
+  padding: 0.75rem 2.5rem;
+  font-family: inherit;
+  font-size: 1rem;
+  border-radius: 999px;
+  border: 2px solid #F2B75E;
+  background-color: #F8DE7E;
+  color: #ffffff;
+  cursor: pointer;
+
+  opacity: 0;
+  transition: opacity 1s ease-in-out 2s; /* 2s delay */
+}
+
+.walk-page.show-final-text .final-button {
+  opacity: 1;
+}
+
+/* =========================================================
+   WALK PAGE — BREATH WIDGET POSITIONING
+   ========================================================= */
+
+#breath-widget-container {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  width: 260px;
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+
+  opacity: 1;
+  pointer-events: none; /* do not block page interactions */
+}
+
+#breath-widget {
+  pointer-events: auto; /* canvas still clickable */
 }
