@@ -1,4 +1,6 @@
-/* GLOBAL */
+/* ============================
+   GLOBAL
+   ============================ */
 html, body {
   margin: 0;
   padding: 0;
@@ -9,12 +11,15 @@ html, body {
   overflow-x: hidden;
 }
 
-/* TOP UI */
+/* ============================
+   TOP UI (ALWAYS ABOVE SPHERE)
+   ============================ */
 #top-ui {
   position: relative;
-  z-index: 10; /* ABOVE SPHERE */
+  z-index: 20;     /* ensures UI always stays above sphere */
   text-align: center;
   padding-top: 20px;
+  background: transparent;
 }
 
 #prompt {
@@ -51,7 +56,9 @@ html, body {
   background: #ddd;
 }
 
-/* RESPONSE BOX UNDER INPUT */
+/* ============================
+   RESPONSE BOX
+   ============================ */
 #responseBox {
   max-width: 500px;
   margin: 0 auto;
@@ -69,125 +76,43 @@ html, body {
   margin-bottom: 16px;
 }
 
-/* CONTINUE BUTTON + PNG */
-#continueBtn {
-   margin-top: -20px; /* move button upward */
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-#continueBtnText {
-  display: block;
-  font-size: 1rem;
-  margin-bottom: 8px;
-}
-
-#walkBtnImg {
-  width: 180px;
-  height: auto;
-  transition: transform 0.25s ease;
-}
-
-#walkBtnImg:hover {
-  transform: scale(1.05);
-}
-
-/* SPHERE CANVAS — FULLSCREEN BACKGROUND */
-#sphereCanvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0;              /* BEHIND UI */
-  pointer-events: none;    /* NEVER BLOCKS CLICKS */
-  display: block;
-}
-
-/* UTILITY */
-.hidden {
-  display: none;
-}
-
-/* REFLECTION BOX */
-#reflectionBox {
-  max-width: 500px;
-  margin: 0 auto;
-  margin-top: 20px;
-  text-align: center;
-  z-index: 10;
-}
-
-#reflectionText,
-#followUpText {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
-}
-
-/* BUTTONS FOR YES / NO / FOLLOW-UP */
-#betterYesBtn,
-#betterNoBtn,
-#followUpBtn {
-  display: block;
-  margin: 12px auto;
-  background: white;
-  color: black;
-  border: none;
-  border-radius: 8px;
-  padding: 12px 24px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background 0.2s ease;
-}
-
-#betterYesBtn:hover,
-#betterNoBtn:hover,
-#followUpBtn:hover {
-  background: #ddd;
-}
-
-/* HIDDEN UTILITY */
-.hidden {
-  display: none;
-}
-
-.btnLabel {
-  display: block;
-  font-size: 1rem;
-  margin-bottom: 4px;
-}
-
 /* ============================
-   PORTAL RING – NEON VERSION
+   PORTAL RING CONTAINER
    ============================ */
-
 #portalRingContainer {
   margin-top: 30px;
   text-align: center;
   cursor: pointer;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
+
   opacity: 0;
   transition: opacity 0.6s ease;
+
+  position: relative;
+  z-index: 15; /* above sphere, below UI */
 }
 
 #portalRingContainer.show {
   opacity: 1;
 }
 
-/* PORTAL RING – NEW SIZE + INSIDE LABEL */
+/* ============================
+   PORTAL RING
+   ============================ */
 #portalRing {
-  width: 130px;   /* smaller */
-  height: 130px;  /* smaller */
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   border: 5px solid #ff4f4f;
-  position: relative; /* required for inner text */
+  position: relative;
 
   animation: neonColorCycle 6s linear infinite,
              neonPulse 2.5s ease-in-out infinite;
+
   box-shadow:
     0 0 18px rgba(255, 100, 100, 0.7),
     inset 0 0 15px rgba(255, 100, 100, 0.5);
@@ -214,13 +139,7 @@ html, body {
   pointer-events: none;
 }
 
-/* Remove the outside text entirely (optional) */
-#portalRingText {
-  display: none;
-}
-
-
-/* Hover effect */
+/* HOVER EFFECT */
 #portalRing:hover {
   transform: scale(1.08);
   box-shadow:
@@ -228,14 +147,33 @@ html, body {
     inset 0 0 25px rgba(255, 255, 255, 0.7);
 }
 
+/* ============================
+   SPHERE BACKGROUND CANVAS
+   ============================ */
+#sphereCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
 
+  width: 100vw;
+  height: 100vh;
 
+  z-index: 0;           /* sphere ALWAYS behind everything */
+  pointer-events: none; /* sphere NEVER blocks clicks */
+
+  display: block;
+}
+
+/* ============================
+   UTILITY
+   ============================ */
+.hidden {
+  display: none;
+}
 
 /* ============================
    ANIMATIONS
    ============================ */
-
-/* Soft breathing motion */
 @keyframes neonPulse {
   0% {
     transform: scale(1);
@@ -243,14 +181,12 @@ html, body {
       0 0 25px rgba(255, 100, 100, 0.7),
       inset 0 0 20px rgba(255, 100, 100, 0.5);
   }
-
   50% {
     transform: scale(1.05);
     box-shadow:
       0 0 40px rgba(255, 255, 255, 1),
       inset 0 0 30px rgba(255, 255, 255, 0.8);
   }
-
   100% {
     transform: scale(1);
     box-shadow:
@@ -259,7 +195,6 @@ html, body {
   }
 }
 
-/* Neon rainbow cycle */
 @keyframes neonColorCycle {
   0%   { border-color: #ff4f4f; box-shadow: 0 0 25px #ff4f4f80; }
   20%  { border-color: #ffd94f; box-shadow: 0 0 25px #ffd94f80; }
@@ -268,4 +203,3 @@ html, body {
   80%  { border-color: #d24fff; box-shadow: 0 0 25px #d24fff80; }
   100% { border-color: #ff4f4f; box-shadow: 0 0 25px #ff4f4f80; }
 }
-
