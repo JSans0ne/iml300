@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>The Walk – End</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      background: radial-gradient(circle at top, #121625 0%, #050711 45%, #020308 100%);
+      font-family: system-ui, sans-serif;
+      color: #fdfdfd;
+      cursor: none;
+    }
+
+    canvas { position: fixed; inset: 0; display: block; }
+
+    #bg       { z-index: 0; }
+    #cursorTrail { z-index: 1; pointer-events:none; }
+    #warpLayer   { z-index: 2; pointer-events:none; }
+
+    #content {
+      position: relative;
+      z-index: 4;
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center; pointer-events: none;
+      padding: 2rem;
+    }
+
+    #content h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.95;
+      margin-bottom: 1rem;
+    }
+
+    #content p {
+      max-width: 32rem;
+      opacity: 0.85;
+      font-size: clamp(1rem, 1.4vw, 1.1rem);
+      line-height: 1.5;
+      margin-bottom: 2rem;
+    }
+
+    #buttons {
+      display: flex;
+      gap: 1.5rem;
+      pointer-events: auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .end-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 0.9rem 2rem;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      cursor: pointer;
+      background: radial-gradient(circle at top left, #ffcf6f, #ffa954, #ff795b);
+      color: #1b0c24;
+      box-shadow: 0 0 25px rgba(255,190,120,0.35);
+      position: relative;
+      overflow: hidden;
+    }
+    .end-btn.secondary {
+      background: radial-gradient(circle at top left, #7ee0e6, #4dcfe0, #4fc3f7);
+      box-shadow: 0 0 25px rgba(120,210,230,0.35);
+    }
+    .end-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(255,240,180,0.6);
+    }
+
+    #cursor-orb {
+      position: fixed;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 5;
+      transform: translate(-50%, -50%);
+      mix-blend-mode: screen;
+      background: radial-gradient(circle, rgba(255,255,255,0.9), rgba(255,255,255,0.05));
+      box-shadow:
+        0 0 18px rgba(255,255,255,0.9),
+        0 0 40px rgba(255,255,255,0.7);
+    }
+
+    #cursor-orb-inner {
+      position: absolute;
+      inset: 25%;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        #ffeb3b,
+        #ff9800,
+        #ff4081,
+        #7c4dff,
+        #40c4ff,
+        #69f0ae,
+        #ffeb3b
+      );
+      filter: blur(4px);
+      animation: spin 4s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 600px) {
+      #cursor-orb { display:none; }
+      body { cursor:auto; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Background + trail + warp -->
+  <canvas id="bg"></canvas>
+  <canvas id="cursorTrail"></canvas>
+  <canvas id="warpLayer"></canvas>
+
+  <!-- Centered text + buttons -->
+  <div id="content">
+    <h1>WELCOME BACK</h1>
+    <p>
+        
+      Stay here as long as you like. The world can wait for you.
+    </p>
+
+    <div id="buttons">
+      <a href="walk3d.html"><button class="end-btn">Take the Walk Again</button></a>
+      <a href="index.html"><button class="end-btn secondary">Return to Start</button></a>
+    </div>
+  </div>
+
+  <!-- Glowing cursor -->
+  <div id="cursor-orb"><div id="cursor-orb-inner"></div></div>
+
+<script>
+/* ============================================================
+   CANVAS SETUP
+============================================================ */
+const canvas = document.getElementById('bg');
+const ctx = canvas.getContext('2d', { alpha:true });
+let width, height;
+
+function resize() {
+  const dpr = window.devicePixelRatio || 1;
+  width = window.innerWidth;
+  height = window.innerHeight;
+  canvas.width = width * dpr;
+  canvas.height = height * dpr;
+  ctx.scale(dpr, dpr);
+}
+resize();
+window.addEventListener('resize', resize);
+
+/* ============================================================
+   PARTICLE SYSTEM (BACKGROUND)
+============================================================ */
+const particleCount = 180;
+const particles = [];
+let globalHue = 200;
+
+class Particle {
+  constructor(resetAll=true) { this.reset(resetAll); }
+
+  reset(randomPos=true) {
+    this.x = randomPos ? Math.random()*width : cursorX;
+    this.y = randomPos ? Math.random()*height : cursorY;
+    const angle = Math.random()*Math.PI*2;
+    const speed = 0.2+Math.random()*0.7;
+    this.vx = Math.cos(angle)*speed;
+    this.vy = Math.sin(angle)*speed;
+    this.size = 2+Math.random()*3;
+    this.life = 0;
+    this.maxLife = 400+Math.random()*400;
+    this.hueOffset = Math.random()*120;
+  }
+
+  update() {
+    const dx = cursorX - this.x;
+    const dy = cursorY - this.y;
+    const dist = Math.sqrt(dx*dx+dy*dy) || 1;
+    const force = Math.min(0.06, 80/(dist*dist+80));
+
+    this.vx += (dx/dist)*force;
+    this.vy += (dy/dist)*force;
+
+    this.vx += (Math.random()-0.5)*0.03;
+    this.vy += (Math.random()-0.5)*0.03;
+
+    this.vx *= 0.985;
+    this.vvy *= 0.985;
+
+    this.x += this.vx;
+    this.y += this.vy;
+
+    // wrap edges
+    const M=40;
+    if(this.x<-M) this.x=width+M;
+    if(this.x>width+M) this.x=-M;
+    if(this.y<-M) this.y=height+M;
+    if(this.y>height+M) this.y=-M;
+
+    if(++this.life>this.maxLife) this.reset(true);
+  }
+
+  draw() {
+    const hue = (globalHue+this.hueOffset)%360;
+    ctx.beginPath();
+    ctx.fillStyle=`hsla(${hue},95%,65%,0.65)`;
+    ctx.shadowColor=`hsla(${hue},95%,70%,0.9)`;
+    ctx.shadowBlur=18;
+    ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+    ctx.fill();
+  }
+}
+
+for(let i=0;i<particleCount;i++) particles.push(new Particle(true));
+
+/* ============================================================
+   COMET CURSOR TRAIL
+============================================================ */
+const trailCanvas = document.getElementById("cursorTrail");
+const trailCtx = trailCanvas.getContext("2d");
+function resizeTrail() {
+  const dpr = window.devicePixelRatio || 1;
+  trailCanvas.width = width * dpr;
+  trailCanvas.height = height * dpr;
+  trailCtx.scale(dpr, dpr);
+}
+resizeTrail();
+window.addEventListener("resize", resizeTrail);
+
+let trail = [];
+const TRAIL_LENGTH = 20;
+
+/* ============================================================
+   CURSOR POSITIONS
+============================================================ */
+let cursorX = width/2;
+let cursorY = height/2;
+let targetX = cursorX;
+let targetY = cursorY;
+
+document.addEventListener("mousemove", e => {
+  targetX = e.clientX;
+  targetY = e.clientY;
+
+  const inner = document.getElementById("cursor-orb-inner");
+  inner.style.transform = "scale(1.15)";
+  clearTimeout(inner._t);
+  inner._t = setTimeout(()=> inner.style.transform="scale(1)",100);
+});
+
+/* ============================================================
+   FIREFLY COMPANIONS
+============================================================ */
+class Firefly {
+  constructor(angle) {
+    this.angle = angle;
+    this.distance = 60;
+    this.hueShift = Math.random()*200;
+    this.size = 5;
+    this.tail = [];
+  }
+  update() {
+    this.angle += 0.02 + Math.random()*0.003;
+    this.x = cursorX + Math.cos(this.angle)*this.distance;
+    this.y = cursorY + Math.sin(this.angle)*this.distance;
+    this.tail.push({x:this.x,y:this.y});
+    if(this.tail.length>12) this.tail.shift();
+  }
+  draw() {
+    const hue = (globalHue+this.hueShift)%360;
+    for(let i=0;i<this.tail.length;i++){
+      const p=this.tail[i], a=i/this.tail.length;
+      trailCtx.beginPath();
+      trailCtx.fillStyle=`hsla(${hue},95%,65%,${a*0.8})`;
+      trailCtx.shadowColor=`hsla(${hue},95%,70%,${a})`;
+      trailCtx.shadowBlur=24*a;
+      trailCtx.arc(p.x,p.y,this.size*a,0,Math.PI*2);
+      trailCtx.fill();
+    }
+    trailCtx.beginPath();
+    trailCtx.fillStyle=`hsla(${hue},95%,70%,1)`;
+    trailCtx.shadowColor=`hsla(${hue},95%,75%,1)`;
+    trailCtx.shadowBlur=20;
+    trailCtx.arc(this.x,this.y,this.size,0,Math.PI*2);
+    trailCtx.fill();
+  }
+}
+
+const fireflies=[
+  new Firefly(0),
+  new Firefly(2),
+  new Firefly(4)
+];
+
+/* ============================================================
+   WARP LAYER (FLUID AURA)
+============================================================ */
+const warpCanvas=document.getElementById("warpLayer");
+const warpCtx=warpCanvas.getContext("2d");
+function resizeWarp(){
+  const dpr=window.devicePixelRatio||1;
+  warpCanvas.width=width*dpr;
+  warpCanvas.height=height*dpr;
+  warpCtx.scale(dpr,dpr);
+}
+resizeWarp();
+window.addEventListener("resize", resizeWarp);
+
+let warpRadius=90;
+function drawWarp(){
+  warpCtx.clearRect(0,0,width,height);
+  const g=warpCtx.createRadialGradient(
+    cursorX,cursorY,0,
+    cursorX,cursorY,warpRadius
+  );
+  g.addColorStop(0,"rgba(255,255,255,0.25)");
+  g.addColorStop(0.35,"rgba(255,255,255,0.12)");
+  g.addColorStop(1,"rgba(255,255,255,0)");
+  warpCtx.globalCompositeOperation="lighter";
+  warpCtx.fillStyle=g;
+  warpCtx.beginPath();
+  warpCtx.arc(cursorX,cursorY,warpRadius,0,Math.PI*2);
+  warpCtx.fill();
+  warpRadius = 90 + Math.sin(Date.now()*0.0018)*12;
+  requestAnimationFrame(drawWarp);
+}
+drawWarp();
+
+/* ============================================================
+   MAIN DRAW LOOPS
+============================================================ */
+function animateBG(){
+  requestAnimationFrame(animateBG);
+  ctx.globalCompositeOperation="source-over";
+  ctx.fillStyle="rgba(2,4,12,0.16)";
+  ctx.fillRect(0,0,width,height);
+
+  ctx.globalCompositeOperation="lighter";
+  globalHue+=0.1;
+  particles.forEach(p=>{ p.update(); p.draw(); });
+}
+animateBG();
+
+function animateTrail(){
+  requestAnimationFrame(animateTrail);
+  // smooth cursor
+  cursorX += (targetX - cursorX)*0.18;
+  cursorY += (targetY - cursorY)*0.18;
+
+  // add point to comet trail
+  trail.push({x:cursorX,y:cursorY,h:globalHue,size:18});
+  if(trail.length>TRAIL_LENGTH) trail.shift();
+
+  trailCtx.clearRect(0,0,width,height);
+  // draw comet tail
+  for(let i=0;i<trail.length;i++){
+    const p=trail[i];
+    const a=i/trail.length;
+    const hue=(p.h+40)%360;
+    trailCtx.beginPath();
+    trailCtx.fillStyle=`hsla(${hue},95%,65%,${a*0.85})`;
+    trailCtx.shadowColor=`hsla(${hue},95%,70%,${a})`;
+    trailCtx.shadowBlur=35*a;
+    trailCtx.arc(p.x,p.y,p.size*a,0,Math.PI*2);
+    trailCtx.fill();
+  }
+
+  // fireflies last
+  fireflies.forEach(f=>{ f.update(); f.draw(trailCtx); });
+
+  // move the actual cursor orb
+  const orb=document.getElementById("cursor-orb");
+  orb.style.left=cursorX+"px";
+  orb.style.top=cursorY+"px";
+}
+animateTrail();
+</script>
+</body>
+</html>

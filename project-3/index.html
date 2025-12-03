@@ -3,51 +3,162 @@
 <head>
   <meta charset="UTF-8" />
   <title>Welcome</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Google Font -->
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: "Lexend", sans-serif;
+    }
 
-  <!-- Fade Logic -->
-  <script src="script.js" defer></script>
+    /* BACKGROUND CANVAS */
+    #bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+    }
+
+    /* CONTENT */
+    #content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      color: #fff;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 7vw, 6rem);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    p {
+      font-size: clamp(1rem, 1.5vw, 1.3rem);
+      max-width: 40rem;
+      line-height: 1.5;
+      opacity: 0.9;
+      margin-bottom: 3rem;
+    }
+
+    /* CIRCULAR PNG BUTTON */
+    #begin-btn {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      background-image: url("assets/begin.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      cursor: pointer;
+      border: none;
+      pointer-events: auto;
+      transition: transform 0.2s ease;
+    }
+
+    #begin-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* TEXT INSIDE BUTTON */
+    #begin-label {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #ffffffea;
+      pointer-events: none;
+    }
+
+    /* OPTIONAL: TEXT BELOW THE BUTTON (toggle on/off) */
+    #begin-below {
+      margin-top: 0.8rem;
+      font-size: 1.2rem;
+      opacity: 0.9;
+      display: none; /* ← set to block if you want text BELOW instead of inside */
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- Full page gradient background -->
-  <div class="gradient-bg">
+  <!-- BACKGROUND -->
+  <canvas id="bg"></canvas>
 
-    <section id="welcome-page">
+  <!-- CONTENT -->
+  <div id="content">
+    <h1>WELCOME</h1>
 
-      <!-- LOCKED LAYOUT WRAPPER (prevents ANY movement) -->
-      <div id="welcome-layout-lock">
+    <p>
+      You have found a special place to go on a meditative journey.<br>
+      First, let's check in.
+    </p>
 
-        <!-- 1. TITLE (fades in) -->
-        <h1 id="welcome-title">WELCOME</h1>
-
-        <!-- 2. SUBTITLE + BUTTON AREA (fixed height, NO movement) -->
-        <div id="welcome-stack">
-
-          <!-- Subtitle fades in second -->
-          <h2 id="welcome-sub">To Your Space to Find Calm</h2>
-
-          <!-- Button fades in third -->
-          <a id="walk-button-container" href="prepare.html">
-            <div id="walk-circle"></div>
-            <div id="walk-text">Let’s Take A Walk</div>
-          </a>
-
-        </div>
-
+    <a href="sphere.html" style="pointer-events: auto;">
+      <div id="begin-btn">
+        <!-- TEXT INSIDE BUTTON -->
+        <div id="begin-label">Begin</div>
       </div>
-
-    </section>
-
+      <!-- TEXT BELOW BUTTON (toggle if you prefer) -->
+      <div id="begin-below">Begin</div>
+    </a>
   </div>
+
+  <!-- GRADIENT ANIMATION -->
+  <script>
+    const canvas = document.getElementById("bg");
+    const ctx = canvas.getContext("2d");
+
+    let w, h;
+    let hue1 = 0;
+    let hue2 = 90;
+
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener("resize", resize);
+
+    function draw() {
+      hue1 = (hue1 + 0.05) % 360;
+      hue2 = (hue2 + 0.05) % 360;
+
+      const gradient = ctx.createLinearGradient(0, 0, w, h);
+      gradient.addColorStop(0, `hsl(${hue1}, 70%, 65%)`);
+      gradient.addColorStop(1, `hsl(${hue2}, 70%, 55%)`);
+
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, w, h);
+
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  </script>
 
 </body>
 </html>

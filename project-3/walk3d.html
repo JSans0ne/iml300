@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>3D Walk Experience</title>
+
+  <!-- THREE.JS -->
+  <script src="https://unpkg.com/three@0.152.2/build/three.min.js"></script>
+
+  <!-- Page styles -->
+  <link rel="stylesheet" href="walk3d.css">
+</head>
+
+<body>
+  <!-- START OVERLAY -->
+  <div id="start-overlay">
+    <div id="start-text">
+      <p>When you're ready,<br>press and go forth...</p>
+      <div id="start-circle"></div>
+    </div>
+  </div>
+
+  <!-- 3D CANVAS CONTAINER -->
+  <div id="walk3d-container"></div>
+
+  <!-- OVERLAY UI -->
+  <div id="ui-overlay">
+    <button id="exit-walk-btn">Exit Walk</button>
+  </div>
+<!-- END GRADIENT OVERLAY UI (hidden until end) -->
+<div id="end-overlay">
+  <p id="end-text">
+    Take a second to breathe and appreciate your journey.<br><br>
+    Press the button when you are ready to proceed.
+  </p>
+
+  <a id="end-button" href="end.html">
+    <img src="assets/gradientbutton.png" alt="Continue">
+  </a>
+</div>
+
+
+  <!-- MAIN JS FILE FOR THE 3D EXPERIENCE -->
+  <script src="walk3d.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sentiment Sphere</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- UI PANEL -->
+  <div id="top-ui">
+    <p id="prompt">How are you feeling today?</p>
+
+    <div id="input-row">
+      <input
+        id="sentimentInput"
+        type="text"
+        placeholder="Type how you're feeling..."
+      />
+      <button id="sentimentBtn">Analyze</button>
+    </div>
+
+    <!-- RESPONSE + PORTAL RING -->
+    <div id="responseBox" class="hidden">
+      <p id="responseText"></p>
+
+      <!-- 🔮 PORTAL RING (shown after sentiment result) -->
+      <div id="portalRingContainer" class="hidden">
+        <div id="portalRing">
+          <div id="portalRingLabel">enter to start the journey</div>
+        </div>
+      </div>
+    </div> <!-- end #responseBox -->
+
+  </div> <!-- end #top-ui -->
+
+  <!-- SPHERE CANVAS BACKDROP -->
+  <canvas id="sphereCanvas"></canvas>
+
+  <!-- LIBRARIES -->
+  <script src="https://unpkg.com/three@0.152.2/build/three.min.js"></script>
+  <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+
+  <!-- LOGIC -->
+  <script src="sphere.js"></script>
+</body>
+</html>

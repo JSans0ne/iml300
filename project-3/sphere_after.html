@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reflection</title>
+  <link rel="stylesheet" href="sphere_after.css" />
+</head>
+
+<body>
+
+  <!-- UI LAYER ABOVE SPHERE -->
+  <div id="top-ui">
+    <p id="prompt">Welcome back.</p>
+
+    <div id="reflectionBox">
+      <p id="reflectionText">
+        Are you feeling better after the walk?
+      </p>
+
+      <!-- YES + NO BUTTONS -->
+      <div id="reflectionButtons">
+        <button id="betterYesBtn" class="circleBtn">
+          <img src="assets/yes.png" alt="Yes">
+        </button>
+
+        <button id="betterNoBtn" class="circleBtn">
+          <img src="assets/no.png" alt="No">
+        </button>
+      </div>
+
+      <!-- FOLLOW-UP TEXT -->
+      <p id="followUpText" class="hidden"></p>
+
+      <!-- FOLLOW-UP ACTION BUTTON -->
+      <button id="followUpBtn" class="hidden">
+        <span id="followUpBtnText"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- BACKGROUND SPHERE -->
+  <canvas id="sphereCanvas"></canvas>
+
+  <!-- LIBRARIES -->
+  <script src="https://unpkg.com/three@0.152.2/build/three.min.js"></script>
+
+  <!-- LOGIC FILE -->
+  <script src="sphere_after.js"></script>
+
+</body>
+</html>
