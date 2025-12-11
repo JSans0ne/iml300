@@ -144,8 +144,8 @@
     window.addEventListener("resize", resize);
 
     function draw() {
-      hue1 = (hue1 + 0.05) % 360;
-      hue2 = (hue2 + 0.05) % 360;
+      hue1 = (hue1 + 0.20) % 360;
+      hue2 = (hue2 + 0.20) % 360;
 
       const gradient = ctx.createLinearGradient(0, 0, w, h);
       gradient.addColorStop(0, `hsl(${hue1}, 70%, 65%)`);
