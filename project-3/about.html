@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About This Project</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: "Lexend", sans-serif;
+      color: #fff;
+    }
+
+    /* BACKGROUND CANVAS (SAME AS INDEX) */
+    #bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+    }
+
+    /* CONTENT CONTAINER */
+    #content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    p {
+      max-width: 50rem;
+      font-size: clamp(1rem, 1.5vw, 1.3rem);
+      line-height: 1.6;
+      opacity: 0.92;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Animated Background -->
+  <canvas id="bg"></canvas>
+
+  <!-- Page Content -->
+  <div id="content">
+    <h1>ABOUT THIS PROJECT</h1>
+
+    <p>
+      Write your description here.  
+      This block is styled for readability and can contain multiple sentences about the purpose, inspiration, or process behind the project.
+    </p>
+  </div>
+
+  <!-- Gradient Animation Script (Same as Index Page) -->
+  <script>
+    const canvas = document.getElementById("bg");
+    const ctx = canvas.getContext("2d");
+
+    let w, h;
+    let hue1 = 0;
+    let hue2 = 90;
+
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener("resize", resize);
+
+    function draw() {
+      hue1 = (hue1 + 0.20) % 360;
+      hue2 = (hue2 + 0.20) % 360;
+
+      const gradient = ctx.createLinearGradient(0, 0, w, h);
+      gradient.addColorStop(0, `hsl(${hue1}, 70%, 65%)`);
+      gradient.addColorStop(1, `hsl(${hue2}, 70%, 55%)`);
+
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, w, h);
+
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  </script>
+
+</body>
+</html>
