@@ -71,10 +71,12 @@
       position: relative;
       overflow: hidden;
     }
+
     .end-btn.secondary {
       background: radial-gradient(circle at top left, #7ee0e6, #4dcfe0, #4fc3f7);
       box-shadow: 0 0 25px rgba(120,210,230,0.35);
     }
+
     .end-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 0 40px rgba(255,240,180,0.6);
@@ -118,20 +120,62 @@
       #cursor-orb { display:none; }
       body { cursor:auto; }
     }
+
+    /* ============================================================
+       ABOUT BUTTON (PNG)
+    ============================================================ */
+#about-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: calc(2rem + 50px);  /* moved 50px left */
+  z-index: 9999;
+  pointer-events: auto;
+  display: inline-block;
+}
+
+#about-btn img {
+  width: 110px;  /* slightly bigger */
+  height: auto;
+  display: block;
+}
+
+/* Text overlay */
+#about-btn span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+
+
   </style>
 </head>
 
 <body>
-  <!-- Background + trail + warp -->
+
+  <!-- Background layers -->
   <canvas id="bg"></canvas>
   <canvas id="cursorTrail"></canvas>
   <canvas id="warpLayer"></canvas>
 
-  <!-- Centered text + buttons -->
+  <!-- ABOUT PNG BUTTON -->
+<a href="about.html" id="about-btn">
+  <img src="assets/about.png" alt="About">
+  <span>ABOUT</span>
+</a>
+
+
+  <!-- Center content -->
   <div id="content">
     <h1>WELCOME BACK</h1>
     <p>
-        
       Stay here as long as you like. The world can wait for you.
     </p>
 
@@ -141,7 +185,7 @@
     </div>
   </div>
 
-  <!-- Glowing cursor -->
+  <!-- Cursor orb -->
   <div id="cursor-orb"><div id="cursor-orb-inner"></div></div>
 
 <script>
@@ -204,7 +248,6 @@ class Particle {
     this.x += this.vx;
     this.y += this.vy;
 
-    // wrap edges
     const M=40;
     if(this.x<-M) this.x=width+M;
     if(this.x>width+M) this.x=-M;
@@ -315,7 +358,7 @@ function resizeWarp(){
   const dpr=window.devicePixelRatio||1;
   warpCanvas.width=width*dpr;
   warpCanvas.height=height*dpr;
-  warpCtx.scale(dpr,dpr);
+  warpCtx.scale(dpr,dpr);  
 }
 resizeWarp();
 window.addEventListener("resize", resizeWarp);
@@ -357,16 +400,15 @@ animateBG();
 
 function animateTrail(){
   requestAnimationFrame(animateTrail);
-  // smooth cursor
+
   cursorX += (targetX - cursorX)*0.18;
   cursorY += (targetY - cursorY)*0.18;
 
-  // add point to comet trail
   trail.push({x:cursorX,y:cursorY,h:globalHue,size:18});
   if(trail.length>TRAIL_LENGTH) trail.shift();
 
   trailCtx.clearRect(0,0,width,height);
-  // draw comet tail
+
   for(let i=0;i<trail.length;i++){
     const p=trail[i];
     const a=i/trail.length;
@@ -379,15 +421,14 @@ function animateTrail(){
     trailCtx.fill();
   }
 
-  // fireflies last
   fireflies.forEach(f=>{ f.update(); f.draw(trailCtx); });
 
-  // move the actual cursor orb
   const orb=document.getElementById("cursor-orb");
   orb.style.left=cursorX+"px";
   orb.style.top=cursorY+"px";
 }
 animateTrail();
 </script>
+
 </body>
 </html>
