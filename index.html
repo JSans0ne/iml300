@@ -1,135 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Jonas Sansone – IML300 Homepage</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="finalcomp.css">
 </head>
 
+<body>
 
-  <body>
-
-    <!-- HEADER -->
-    <div>
-      <h1>Jonas Sansone</h1>
-      <p>
-        This is my website for <i>IML300</i>. 
-        <!-- Write a little bit about yourself here -->
-      </p>
-    </div>
-
-    <!-- PRESENTATION -->
-    <div>
-      <h1>Presentation</h1>
-      <a href="https://docs.google.com/presentation/d/1Ek_6j9pk8VDv9TfCAWQ9fa8YvWYIokPNJNzrMnS80iM/edit?usp=sharing" target="_blank">
-        Pecha Kucha
-      </a>
-    </div>
-
-    <!-- PROJECTS -->
-    <div>
-      <h1>Projects</h1>
-
-      <!-- PROJECT 1 -->
-<h2>Project 1: FUN Website</h2>
-<p><!-- Add your 100-word description here --></p>
-<a href="https://jsans0ne.github.io/iml300/project-2/" target="_blank">Final Live Site</a>
+  <!-- =====================================================
+       TOP NAV BAR
+  ====================================================== -->
+  <nav class="top-nav">
+    <a href="#projects">PROJECTS</a>
+    <a href="#pecha">PECHA KUCHA</a>
+    <a href="#exercises">P5 EXERCISES</a>
+    <a href="#vibe">VIBE CODING</a>
+  </nav>
 
 
-      <!-- PROJECT 2 -->
-      <h2>Project 2: HyperNarrative – GREYSKULL: An Auto-Catography</h2>
-      <p><!-- Add your 100-word description here --></p>
-      <a href="https://jsans0ne.github.io/iml300/Greyskull/" target="_blank">Final Live Site</a>
+  <!-- =====================================================
+       HERO TITLE
+  ====================================================== -->
+  <header class="hero-title">
+    <h1 class="main-title">Jonas’s Web Dev Portfolio</h1>
+  </header>
 
-      <!-- PROJECT 3 -->
-      <h2>Project 3: Networked Care – Walk Experience</h2>
-      <p><!-- Add your 100-word description here --></p>
-      <a href="https://jsans0ne.github.io/iml300/project-3/walk.html" target="_blank">Final Live Site</a>
-    </div>
 
-  <!-- EXERCISES SECTION -->
-<div>
-  <h1>Exercises</h1>
+  <!-- =====================================================
+       PROJECTS SECTION
+  ====================================================== -->
+  <section id="projects" class="section-block">
+    <h1 class="section-title">PROJECTS</h1>
 
-  <div class="p5-grid">
+    <!-- ========= PROJECT 1 ========= -->
+    <!-- ========= PROJECT 1 ========= -->
+<div class="project-block">
+  <h2>Project 1 – Interactive Audio & Visual with p5.js</h2>
+  <h3>"Voice Portal"</h3>
 
-    <!-- PROJECT 1 -->
-    <div class="p5-item p1">
-      <h3>Face Project</h3>
-      <iframe src="https://editor.p5js.org/Jsansone/embed/g5B70usXS"></iframe>
-      <br />
-      <a href="https://editor.p5js.org/Jsansone/sketches/g5B70usXS" target="_blank">p5.js Editor</a>
-    </div>
+  <p class="project-description">
+    In this interactive audio visual experience, strange voices are going to get us involved in a strange journey to another place in time. 
+    “1”, “2”, “3”, and “4” play voices that can be layered over each other along with their accompanying visuals.
+    <br><br>
+    I wanted to use a lot of strange sounds to create an unnerving mood of anticipation... the code links visuals to audio that can be turned on and off with the number keys. When the right combo is played (all four at once), user functionality is shut off and we enter into a “cut screen” experience that then returns us to where we were taken from, with all user functionality returned.
+    <br><br>
+    The inspirations for this project are <i>2001: A Space Odyssey</i> and the concept of humans evolving into energy for deep space exploration. The audio tracks used are chanting monks, overtone singing, David Hykes' “Rainbow Voice” from his album <i>Hearing Solar Winds</i>, and a clip of H.A.L. from <i>2010: The Year We Make Contact</i>.
+  </p>
 
-    <!-- PROJECT 2 -->
-    <div class="p5-item p2">
-      <h3>Drawing Tool</h3>
-      <iframe src="https://editor.p5js.org/Jsansone/embed/h-3rQ4Vin"></iframe>
-      <br />
-      <a href="https://editor.p5js.org/Jsansone/sketches/h-3rQ4Vin" target="_blank">p5.js Editor</a>
-    </div>
+  <!-- Your p5 sketch embed goes here -->
+ <!-- Your p5 sketch embed goes here -->
+<iframe 
+  src="https://editor.p5js.org/Jsansone/embed/f8cNlzlrv"
+  width="100%" 
+  height="600"
+  style="border: none;"
+></iframe>
 
-    <!-- PROJECT 3 -->
-    <div class="p5-item p3">
-      <h3>Iterative Audio Example 1</h3>
-      <iframe src="https://editor.p5js.org/Jsansone/embed/yWO8ummt8"></iframe>
-      <br />
-      <a href="https://editor.p5js.org/Jsansone/sketches/yWO8ummt8" target="_blank">p5.js Editor</a>
-    </div>
 
-    <!-- PROJECT 4 (center) -->
-    <div class="p5-item p4">
-      <h3>Iterative Audio Example 2</h3>
-      <iframe src="https://editor.p5js.org/Jsansone/embed/qiWm8-mu4"></iframe>
-      <br />
-      <a href="https://editor.p5js.org/Jsansone/sketches/qiWm8-mu4" target="_blank">p5.js Editor</a>
-    </div>
+   <!-- ========= PROJECT 2 ========= -->
+<div class="project-block">
+  <h2>Project 2 – HyperNarrative</h2>
+  <h3>"Greyskull's Auto-Cat-ography"</h3>
 
-    <!-- PROJECT 5 -->
-    <div class="p5-item p5">
-      <h3>Interactive Audio Experience</h3>
-      <iframe src="https://editor.p5js.org/Jsansone/embed/bTSKrNGXu"></iframe>
-      <br />
-      <a href="https://editor.p5js.org/Jsansone/sketches/bTSKrNGXu" target="_blank">p5.js Editor</a>
-    </div>
+  <p class="project-description">
+    My Greyskull, an Auto-Catography website is filled with fun activities utilizing the techniques we've been learning in class. I wanted to make each page an example of different trigger and result, while also being something joyous that can bring a smile to your face if you are having a rough day. I really enjoyed being able to bring my more tactile Photoshop skills into this coding experience.  I included elements I had not used before like camera take over and a text effect. Please be sure to get a picture of you and one of my cat models that you can download, print, and save on your refrigerator.
+  </p>
 
-    <!-- PROJECT 6 -->
-    <div class="p5-item p6">
-      <h3>Music Video</h3>
-      <iframe src="https://editor.p5js.org/Jsansone/embed/nyIE4cALY"></iframe>
-      <br />
-      <a href="https://editor.p5js.org/Jsansone/sketches/nyIE4cALY" target="_blank">p5.js Editor</a>
-    </div>
+  <!-- Project 2 Image -->
+  <img 
+    src="assets/project2.jpg" 
+    alt="Greyskull HyperNarrative Website"
+    class="project-image"
+  />
 
-    <!-- PROJECT 7 -->
-    <div class="p5-item p7">
-      <h3>Interactive Poetry</h3>
-      <iframe src="https://editor.p5js.org/Jsansone/embed/0kSUBl-hP"></iframe>
-      <br />
-      <a href="https://editor.p5js.org/Jsansone/sketches/0kSUBl-hP" target="_blank">p5.js Editor</a>
-    </div>
-
-  </div>
+  <p class="project-link">
+    <a href="https://jsans0ne.github.io/iml300/Greyskull/" target="_blank">
+      Visit Greyskull's Website
+    </a>
+  </p>
 </div>
 
 
+<!-- ========= PROJECT 3 ========= -->
+<div class="project-block">
+  <h2>Project 3 – Networked Care Website</h2>
+  <h3>"Voyage Back to Calm"</h3>
 
-    <!-- VIBE CODING EXPERIMENTS -->
-    <div>
-      <h1>Vibe Coding Experiments</h1>
+  <p class="project-description">
+   This website is meant to be a small, safe, calm place for anyone to use when they're feeling anxious, overwhelmed, in a state of "functional freeze, or if feeling a mild emotional spin about to begin. I've needed a site like this in the past and was never able to find one. Most mental and emotional health sites are about providing information, not offering an interactive engagement that could help to move through the temporary difficulty with greater ease. The two best methods to manage mild mental and emotional difficulties are breathing and distraction. This site began as a scrolling walk through multiple beautiful scenes that help guide the user from overwhelm to calm, and it became a much greater, imagination involving experience through a meditative tunnel outside the time and space of our normal experience of "real" life.
+  </p>
 
-      <ul>
-        <li><a href="https://claude.ai/public/artifacts/d3996de6-84c6-487b-910e-4905afaea2d5?fullscreen=false" target="_blank">Choose-Your-Own-Adventure</a></li>
-        <li><a href="https://claude.ai/public/artifacts/04bab274-f5cf-4d52-af6a-598680b19456" target="_blank">Defiant Goo Helper</a></li>
-        <li><a href="https://arpanet-gremlin-dash.lovable.app/" target="_blank">Arpanet Gremlin Debugger</a></li>
-        <li><a href="https://claude.ai/public/artifacts/b69fec27-8982-4a50-a9b1-7afde5033ab8" target="_blank">Vulnerable Technology Guide</a></li>
-        <li><a href="https://v0-ai-mad-libs-game.vercel.app/" target="_blank">Train a Corporate AI with MADLibs</a></li>
-        <li><a href="https://v0-songwriting-website.vercel.app/" target="_blank">Storytelling Karaoke</a></li>
-        <!-- <li>From Silence, Beautiful Sound – movement tone creation (see attached PDF/document)</li>
-      </ul>
+  <!-- Project 3 Image -->
+  <img 
+    src="assets/project3.jpg" 
+    alt="Networked Care Walk Experience Website"
+    class="project-image"
+  />
+
+  <p class="project-link">
+    <a href="https://jsans0ne.github.io/iml300/project-3/" target="_blank">
+      Visit the Voyage Back to Calm Website
+    </a>
+  </p>
+</div>
+
+  </section>
+
+<!-- =====================================================
+       PECHA KUCHA SECTION
+====================================================== -->
+<section id="pecha" class="section-block">
+  <h1 class="section-title">PECHA KUCHA</h1>
+
+  <!-- American Artist Title -->
+  <h2 class="artist-title">American Artist</h2>
+
+  <!-- Text Box -->
+  <div class="artist-textbox">
+    <p>
+      American Artist, in his own words about his work:
+      <br><br>
+      “I’m an interdisciplinary artist thinking about blackness, being, and resistance in the context of networked virtual life. I use video, installation, new media, and writing to reveal how the history of power is embedded in our daily lives. I spend a lot of my time thinking about how we create equality for those left out of history, and what that might visually look like. Due to my legal name change I’ve only very recently become googleable… though I’m still not recognized by many systems (technological or societal).”
+    </p>
+  </div>
+
+  <!-- PDF SECTION -->
+  <div class="pecha-pdf-block">
+    <iframe
+      class="pdf-frame"
+      src="https://mozilla.github.io/pdf.js/web/viewer.html?file=https%3A%2F%2Fjsans0ne.github.io%2Fiml300%2Fassets%2Famerican_artist_pecha.pdf">
+    </iframe>
+  </div>
+
+  <!-- Artist Website Link -->
+  <p class="artist-website">
+    <a href="https://americanartist.us/" target="_blank">Visit American Artist's Website</a>
+  </p>
+</section>
+
+
+
+
+
+  <!-- =====================================================
+       P5 EXERCISES SECTION (GRID RESTORED)
+  ====================================================== -->
+  <section id="exercises" class="section-block">
+    <h1 class="section-title">P5.js EXERCISES</h1>
+
+    <div class="p5-grid">
+
+      <!-- PROJECT 1 -->
+      <div class="p5-item p1">
+        <h3>Face Project</h3>
+        <iframe src="https://editor.p5js.org/Jsansone/embed/g5B70usXS"></iframe>
+        <br />
+        <a href="https://editor.p5js.org/Jsansone/sketches/g5B70usXS" target="_blank">p5.js Editor</a>
+      </div>
+
+      <!-- PROJECT 2 -->
+      <div class="p5-item p2">
+        <h3>Drawing Tool</h3>
+        <iframe src="https://editor.p5js.org/Jsansone/embed/h-3rQ4Vin"></iframe>
+        <br />
+        <a href="https://editor.p5js.org/Jsansone/sketches/h-3rQ4Vin" target="_blank">p5.js Editor</a>
+      </div>
+
+      <!-- PROJECT 3 -->
+      <div class="p5-item p3">
+        <h3>Iterative Audio Example 1</h3>
+        <iframe src="https://editor.p5js.org/Jsansone/embed/yWO8ummt8"></iframe>
+        <br />
+        <a href="https://editor.p5js.org/Jsansone/sketches/yWO8ummt8" target="_blank">p5.js Editor</a>
+      </div>
+
+      <!-- PROJECT 4 -->
+      <div class="p5-item p4">
+        <h3>Iterative Audio Example 2</h3>
+        <iframe src="https://editor.p5js.org/Jsansone/embed/qiWm8-mu4"></iframe>
+        <br />
+        <a href="https://editor.p5js.org/Jsansone/sketches/qiWm8-mu4" target="_blank">p5.js Editor</a>
+      </div>
+
+      <!-- PROJECT 5 -->
+      <div class="p5-item p5">
+        <h3>Interactive Audio Experience</h3>
+        <iframe src="https://editor.p5js.org/Jsansone/embed/bTSKrNGXu"></iframe>
+        <br />
+        <a href="https://editor.p5js.org/Jsansone/sketches/bTSKrNGXu" target="_blank">p5.js Editor</a>
+      </div>
+
+      <!-- PROJECT 6 -->
+      <div class="p5-item p6">
+        <h3>Music Video</h3>
+        <iframe src="https://editor.p5js.org/Jsansone/embed/nyIE4cALY"></iframe>
+        <br />
+        <a href="https://editor.p5js.org/Jsansone/sketches/nyIE4cALY" target="_blank">p5.js Editor</a>
+      </div>
+
+      <!-- PROJECT 7 -->
+      <div class="p5-item p7">
+        <h3>Interactive Poetry</h3>
+        <iframe src="https://editor.p5js.org/Jsansone/embed/0kSUBl-hP"></iframe>
+        <br />
+        <a href="https://editor.p5js.org/Jsansone/sketches/0kSUBl-hP" target="_blank">p5.js Editor</a>
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <!-- =====================================================
+       VIBE CODING SECTION
+  ====================================================== -->
+  <section id="vibe" class="section-block">
+  <h1 class="section-title">VIBE CODING EXPERIMENTS</h1>
+
+  <!-- TEXT BLOCK FOR REFLECTION -->
+  <p class="vibe-description">
+    GOOP GOOP GOOP
+  </p>
+
+  <!-- VIBE CODING GRID -->
+  <div class="vibe-grid">
+
+    <!-- 1 -->
+    <div class="vibe-item">
+      <img src="assets/vibe1.png" alt="Choose-Your-Own-Adventure">
+      <a href="https://claude.ai/public/artifacts/d3996de6-84c6-487b-910e-4905afaea2d5?fullscreen=false" target="_blank">
+        Choose-Your-Own-Adventure
+      </a>
     </div>
 
-    
+    <!-- 2 -->
+    <div class="vibe-item">
+      <img src="assets/vibe2.png" alt="Defiant Goo Helper">
+      <a href="https://claude.ai/public/artifacts/04bab274-f5cf-4d52-af6a-598680b19456" target="_blank">
+        Defiant Goo Helper
+      </a>
+    </div>
 
-    <footer>Fall 2025.</footer>
+    <!-- 3 -->
+    <div class="vibe-item">
+      <img src="assets/vibe3.png" alt="Arpanet Gremlin Debugger">
+      <a href="https://arpanet-gremlin-dash.lovable.app/" target="_blank">
+        Arpanet Gremlin Debugger
+      </a>
+    </div>
 
-  </body>
+    <!-- 4 -->
+    <div class="vibe-item">
+      <img src="assets/vibe4.png" alt="Vulnerable Technology Guide">
+      <a href="https://claude.ai/public/artifacts/b69fec27-8982-4a50-a9b1-7afde5033ab8" target="_blank">
+        Vulnerable Technology Guide
+      </a>
+    </div>
+
+    <!-- 5 -->
+    <div class="vibe-item">
+      <img src="assets/vibe5.png" alt="Train a Corporate AI with MADLibs">
+      <a href="https://v0-ai-mad-libs-game.vercel.app/" target="_blank">
+        Train a Corporate AI with MADLibs
+      </a>
+    </div>
+
+    <!-- 6 -->
+    <div class="vibe-item">
+      <img src="assets/vibe6.png" alt="Storytelling Karaoke">
+      <a href="https://v0-songwriting-website.vercel.app/" target="_blank">
+        Storytelling Karaoke
+      </a>
+    </div>
+
+    <!-- 7 -->
+    <div class="vibe-item">
+      <img src="assets/vibe7.png" alt="From Silence, Beautiful Sound">
+      <a href="#" target="_blank">
+        From Silence, Beautiful Sound
+      </a>
+    </div>
+
+    <!-- 8 -->
+    <div class="vibe-item">
+      <img src="assets/vibe8.png" alt="Choose Your Future Face">
+      <a href="https://claude.ai/public/artifacts/413d3b47-c1e0-4d22-9554-8542f8eac01f" target="_blank">
+        Choose Your Future Face
+      </a>
+    </div>
+
+    <!-- 9 -->
+    <div class="vibe-item">
+      <img src="assets/vibe9.png" alt="Word to Note Music Engine">
+      <a href="https://word-note-juggler.lovable.app/" target="_blank">
+        Word to Note Music Engine
+      </a>
+    </div>
+
+  </div>
+</section>
+
+  <footer>
+    Fall 2025.
+  </footer>
+
+</body>
 </html>
