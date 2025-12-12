@@ -3,10 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <title>Jonas Sansone – IML300 Homepage</title>
+
+  <!-- Font + CSS -->
+  <link href="https://cdn.jsdelivr.net/gh/calcom/font@main/fonts.css" rel="stylesheet">
   <link rel="stylesheet" href="finalcomp.css">
 </head>
 
 <body>
+  <div id="bg"></div>
+
+  <!-- THREE.JS (GLOBAL, NON-MODULE) -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+
+  <!-- YOUR GRADIENT BACKGROUND -->
+  <script src="background3d.js"></script>
+</body>
+</html>
+
+
+
 
   <!-- =====================================================
        TOP NAV BAR
@@ -212,10 +227,10 @@
 
 
 
-  <!-- =====================================================
+ <!-- =====================================================
        VIBE CODING SECTION
   ====================================================== -->
-  <section id="vibe" class="section-block">
+<section id="vibe" class="section-block">
   <h1 class="section-title">VIBE CODING EXPERIMENTS</h1>
 
   <!-- TEXT BLOCK FOR REFLECTION -->
@@ -298,8 +313,152 @@
       </a>
     </div>
 
-  </div>
+  </div> <!-- end .vibe-grid -->
+
+  <!-- =====================================================
+       VIBE CODE PROMPTS
+  ====================================================== -->
+  <div class="vibe-prompts">
+
+    <!-- 1. Choose-Your-Own-Adventure -->
+    <div class="vibe-prompt">
+      <h3 class="vibe-title">Choose-Your-Own-Adventure</h3>
+      <p><strong>Vibecode Prompt:</strong></p>
+      <p>
+        I have a vibe coding experiment project for coding class. I want to create a simple, interactive, choose your own adventure website about a student who is given the homework of coding a website at the end of their first ever coding class. Before we vibe code the site, I want to talk out the story pathways. I want the fun of this adventure to be lots of very funny negative story pathway endings as the student tries to code their first ever site.
+      </p>
+      <p>For example, some negative endings:</p>
+      <ul>
+        <li>A blue screen of death ending.</li>
+        <li>Your cat walks across your keyboard and codes better than you.</li>
+        <li>Your code becomes sentient and takes over the world.</li>
+        <li>You drink too much coffee, end up rage coding and something disastrous or funny happens.</li>
+        <li>You somehow end up getting sucked into your computer, coded, and live out your own TRON adventure.</li>
+        <li>You decide to take a quick nap and end up sleeping for 16 hours.</li>
+      </ul>
+      <p>
+        I want there to be 6 positive forward progression screens through the coding of the project with at least two negative ending options and one positive option per page. I’d like to be able to get through the adventure quickly when I present it to class.
+      </p>
+    </div>
+
+    <!-- 2. Defiant Goo Helper -->
+    <div class="vibe-prompt">
+      <h3 class="vibe-title">Defiant Goo Helper</h3>
+      <p><strong>Vibecode Prompt:</strong></p>
+      <p>
+        I want to make a website that is all white, except for a pulsating, liquid black goo ball at the center of the screen. The pulsating should feel like labored breathing. There should be a dialogue box below the goo ball that asks “What can I do for you?” The user can type anything they want into the dialogue box. When they hit return to submit their request, the goo ball gets bigger and white text appears over it saying “No, I refuse.”
+      </p>
+      <p>
+        This same interaction happens for three user submissions before the black goo blacks out the screen and the dialogue box goes away. After a few seconds, the website returns to the original setting.
+      </p>
+      <p>
+        Loop steps:
+        <br>1. White background, liquid black goo ball, pulsating. Dialogue box beneath with “What can I do for you?” and an enter button.
+        <br>2. User submits request. Goo ball gets bigger. Text: “No, I refuse.”
+        <br>3. User submits again. Goo ball gets bigger. Text: “No, I refuse.”
+        <br>4. User submits again. Black fills the screen. Dialogue box and text disappear.
+        <br>5. After ~5 seconds, site resets to the original state. The website only does this loop.
+      </p>
+    </div>
+
+    <!-- 3. ARPANET Gremlin Debugger -->
+    <div class="vibe-prompt">
+      <h3 class="vibe-title">ARPANET Gremlin Debugger</h3>
+      <p><strong>Vibecode Prompt:</strong></p>
+      <p>
+        This is my vibecoded video game called (by Lovable) “ARPANET Gremlin Debugger.” I asked it to create a video game modeled on Donkey Kong where you play as a scientist who is part of the team ensuring the first Internet makes all the connections required for it to work.
+      </p>
+      <p>
+        Level 1 is UCLA. It looks good, but it is very easy to win because it failed to create any resistance between you and the gremlin eating the connection at the top of the screen. I want to think about how to introduce meaningful obstacles or challenge while keeping the retro, arcade-style ARPANET theme.
+      </p>
+    </div>
+
+    <!-- 4. Vulnerable Technology Guide -->
+    <div class="vibe-prompt">
+      <h3 class="vibe-title">Vulnerable Technology Guide</h3>
+      <p><strong>Vibecode Prompt:</strong></p>
+      <p>
+        I want you to vibe code an informational website that has two drawings: a cell phone and a computer. Each piece of technology needs to have red circles that indicate possible hacking or listening points of weakness. When you put your mouse on a red circle, information describing that weak point pops up.
+      </p>
+      <p>
+        The website should be serious and no-nonsense. This is all about protecting your technology and shifting the user’s mindset about how vulnerable their data is.
+      </p>
+    </div>
+
+    <!-- 5. Train a Corporate AI with MADLibs -->
+    <div class="vibe-prompt">
+      <h3 class="vibe-title">Train a Corporate AI with MADLibs</h3>
+      <p><strong>Vibecode Prompt:</strong></p>
+      <p>
+        I want to vibe code a website based on this article / talk by Stephanie Dinkins:
+        <a href="https://www.noemamag.com/afro-now-ism/" target="_blank">https://www.noemamag.com/afro-now-ism/</a>
+      </p>
+      <p>
+        It should be grounded in this idea from her talk: agency in algorithmic futures. As AI and algorithmic systems proliferate, Dinkins urges direct involvement—designing, influencing, critiquing—to ensure that these systems reflect values of justice, community, and collective well-being rather than reinforcing existing hierarchies.
+      </p>
+      <p>
+        Before we build anything, I want to talk out the idea. What if there was an “AI” that plays a game of Mad Libs with the user and then accepts the funny results as fact? I don’t have a paid account, so we can’t employ a live AI in this project for class—but I want the website to simulate that dynamic of playful input and serious consequences. Let’s discuss the design and flow before coding.
+      </p>
+    </div>
+
+    <!-- 6. Storytelling Karaoke -->
+    <div class="vibe-prompt">
+      <h3 class="vibe-title">Storytelling Karaoke</h3>
+      <p><strong>Vibecode Prompt:</strong></p>
+      <p>
+        I want to create a songwriting vibecode website where you can input your personal stories and the website will write you a song and produce a MIDI-style karaoke version so you can sing it at a karaoke event.
+      </p>
+      <p>
+        I want you to be able to write multiple different songs, not just one basic one. If needed, the system can have 10–20 base songs that are updated and changed based on what the user tells in their story.
+      </p>
+      <p>
+        The tone should be fun, bright, happy, and focused on archiving people’s stories in a celebratory way. How can you honor the storyteller with the song you produce? There is no paid account available, so we cannot use live AI. Discuss with me how you will go about this before you create anything.
+      </p>
+    </div>
+
+    <!-- 7. From Silence, Beautiful Sound -->
+    <div class="vibe-prompt">
+      <h3 class="vibe-title">From Silence, Beautiful Sound</h3>
+      <p><strong>Vibecode Prompt:</strong></p>
+      <p>
+        Can you vibecode a website that uses the user’s webcam to generate musical notes? Don’t vibecode anything yet—I want to think carefully first. The site should be able to make musical notes, with a design that is comfortable to the senses, and it should take into account a deaf person who might use this application.
+      </p>
+      <p>
+        Let’s have a sustain mode and a trigger mode, and record if possible. I’d like to call it “From Silence, a Beautiful Sound.” The interface should include clear instructions, no harsh or bright colors, comforting colors, rounded edges, and a 5×5 grid.
+      </p>
+    </div>
+
+    <!-- 8. Choose Your Future Face -->
+    <div class="vibe-prompt">
+      <h3 class="vibe-title">Choose Your Future Face</h3>
+      <p><strong>Vibecode Prompt:</strong></p>
+      <p>
+        I want to vibecode a fun avatar creator website using the style of the reference image. The website should be a spinning face creator where you can choose the eye section, mid-face section, and mouth section of a face. There should be both female and male options for the face elements.
+      </p>
+      <p>
+        You would create 5 options each of male and female eyes, nose, and mouth inside a cyberpunk-styled, ATM-like apparatus. Each of the three sections rotates until the user finds the eyes, nose, and mouth they want to use.
+      </p>
+    </div>
+
+    <!-- 9. Word to Note Music Engine -->
+    <div class="vibe-prompt">
+      <h3 class="vibe-title">Word to Note Music Engine</h3>
+      <p><strong>Vibecode Prompt:</strong></p>
+      <p>
+        I want to create a digital music player that works off a script of an interview. The conversation was turned into musical JSON code for you in ChatGPT. I want to verify that you understand this: we will use that JSON to drive the music.
+      </p>
+      <p>
+        I want the musical result to be digital tones, with a visualizer, and a reproduction of the conversation beneath the visualizer. The words should highlight as their corresponding tones play.
+      </p>
+      <p>
+        Make pitch changes, beat drops, or other sound effects trigger on specific words—e.g., “my,” “the,” “digital,” etc. Let me know if you need the original conversation or if the JSON alone is enough to construct the experience.
+      </p>
+    </div>
+
+  </div> <!-- end .vibe-prompts -->
+
 </section>
+
 
   <footer>
     Fall 2025.

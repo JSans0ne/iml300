@@ -13,8 +13,8 @@
   justify-content: space-evenly;
   align-items: center;
 
-  padding: 0 20px;          /* buffer from the edges */
-  z-index: 9999;            /* stays above all content */
+  padding: 0 20px;
+  z-index: 9999;
 }
 
 .top-nav a {
@@ -30,160 +30,16 @@
 
 
 /* =========================================================
-   PAGE LAYOUT (SECTION BLOCKS)
-========================================================= */
-.section-block {
-  padding-top: 60px;   /* protects against nav overlap */
-  padding-bottom: 60px;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-
-/* =========================================================
    GENERAL PAGE STYLE
 ========================================================= */
 body {
   margin: 0;
   font-family: sans-serif;
-  background: #fafafa;  /* temporary until background JS added */
+  background: transparent;
 }
 
 h1 {
   margin-bottom: 20px;
-}
-
-footer {
-  text-align: center;
-  padding: 40px 0;
-  opacity: 0.6;
-}
-/* =========================================================
-   TOP NAV BAR
-========================================================= */
-.top-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 20px;
-  background: black;
-
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-
-  padding: 0 20px;
-  z-index: 9999;
-}
-
-.top-nav a {
-  color: white;
-  text-decoration: none;
-  font-size: 12px;
-}
-
-.top-nav a:hover {
-  text-decoration: underline;
-}
-
-
-/* =========================================================
-   HERO TITLE
-========================================================= */
-.hero-title {
-  margin-top: 40px; /* space below nav bar */
-  text-align: center;
-  padding: 40px 0;
-}
-
-.main-title {
-  font-size: 48px;      /* large but below your main Jonas title */
-  font-weight: bold;
-  margin: 0;
-}
-
-
-/* =========================================================
-   PAGE STRUCTURE
-========================================================= */
-.section-block {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.section-title {
-  text-align: center;
-  font-size: 32px;
-  font-weight: bold;
-  margin-bottom: 40px;
-}
-
-
-/* =========================================================
-   PROJECT BLOCKS
-========================================================= */
-.project-block {
-  margin-bottom: 60px;
-}
-
-.project-block h2 {
-  font-size: 24px;
-  margin-bottom: 5px;
-}
-
-.project-block h3 {
-  font-size: 18px;
-  margin-top: 0;
-  opacity: 0.8;
-}
-
-.project-description {
-  max-width: 700px;
-  margin-bottom: 20px;
-}
-
-
-/* =========================================================
-   IMAGE SIZING (320×320)
-========================================================= */
-.project-img {
-  width: 320px;
-  height: 320px;
-  object-fit: cover;
-  border-radius: 6px;
-  display: block;
-  margin-bottom: 20px;
-}
-/* =========================================================
-   TOP NAV BAR
-========================================================= */
-.top-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 20px;
-  background: black;
-
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-
-  padding: 0 20px;
-  z-index: 9999;
-}
-
-.top-nav a {
-  color: white;
-  text-decoration: none;
-  font-size: 12px;
-}
-
-.top-nav a:hover {
-  text-decoration: underline;
 }
 
 
@@ -197,18 +53,21 @@ footer {
 }
 
 .main-title {
-  font-size: 48px;
-  font-weight: bold;
-  margin: 0;
+  font-family: 'Cal Sans', sans-serif;
+  font-size: 4rem;
+  text-align: center;
+  margin: 40px 0 20px 0;
+  color: #111;
+  letter-spacing: 2px;
 }
 
 
 /* =========================================================
-   GENERAL SECTION BLOCKS
+   SECTION BLOCKS
 ========================================================= */
 .section-block {
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 60px;
+  padding-bottom: 60px;
   max-width: 900px;
   margin: 0 auto;
 }
@@ -235,8 +94,8 @@ footer {
 
 .project-block h3 {
   font-size: 18px;
-  opacity: 0.8;
   margin-top: 0;
+  opacity: 0.8;
 }
 
 .project-description {
@@ -244,6 +103,7 @@ footer {
   margin-bottom: 20px;
 }
 
+/* Thumbnail images ONLY (unchanged from your original) */
 .project-img {
   width: 320px;
   height: 320px;
@@ -255,7 +115,7 @@ footer {
 
 
 /* =========================================================
-   P5 GRID (RESTORED EXACT LAYOUT)
+   P5 GRID
 ========================================================= */
 .p5-grid {
   display: grid;
@@ -274,34 +134,22 @@ footer {
   border: none;
 }
 
-/* Grid positioning */
+/* Grid positions */
 .p1 { grid-column: 1; grid-row: 1; }
 .p2 { grid-column: 2; grid-row: 1; }
 .p3 { grid-column: 3; grid-row: 1; }
-
 .p4 { grid-column: 2; grid-row: 2; }
-
 .p5 { grid-column: 1; grid-row: 3; }
 .p6 { grid-column: 2; grid-row: 3; }
 .p7 { grid-column: 3; grid-row: 3; }
 
 
 /* =========================================================
-   FOOTER
+   VIBE GRID
 ========================================================= */
-footer {
-  text-align: center;
-  padding: 40px 0;
-  opacity: 0.6;
-}
-
-/* =========================================================
-   VIBE CODING GRID
-========================================================= */
-
 .vibe-description {
   max-width: 700px;
-  margin: 0 auto 40px auto;
+  margin: 0 auto 40px;
   font-size: 16px;
 }
 
@@ -323,7 +171,7 @@ footer {
   object-fit: cover;
   border-radius: 6px;
   display: block;
-  margin: 0 auto 10px auto;
+  margin: 0 auto 10px;
 }
 
 .vibe-item a {
@@ -338,10 +186,10 @@ footer {
   text-decoration: underline;
 }
 
-/* =========================================================
-   PECHA KUCHA STYLES
-========================================================= */
 
+/* =========================================================
+   PECHA KUCHA
+========================================================= */
 .artist-title {
   text-align: center;
   font-size: 28px;
@@ -350,7 +198,7 @@ footer {
 
 .artist-textbox {
   max-width: 700px;
-  margin: 0 auto 40px auto;
+  margin: 0 auto 40px;
   font-size: 16px;
   line-height: 1.6;
   background: #f3f3f3;
@@ -366,53 +214,52 @@ footer {
 
 .pdf-frame {
   width: 100%;
-  max-width: 700px;
-  height: 500px;
-  border: none;
-  margin: 20px auto;
-  display: block;
-}
-
-.artist-website {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.artist-website a {
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.artist-website a:hover {
-  text-decoration: underline;
-}
-
-.project-image {
-  width: 100%;
-  max-width: 1200px;
-  height: auto;        /* ← THIS is the key change */
-  object-fit: contain; /* ensures no distortion */
-  border-radius: 12px;
-  margin-top: 20px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-
-.project-link {
-  text-align: center;
-  margin-top: 10px;
-  font-size: 1.1rem;
-}
-
-.pdf-frame {
-  width: 100%;
   max-width: 900px;
   height: 600px;
   border: none;
   margin: 20px auto;
   display: block;
-  background: #fff; /* Helps PDFs display correctly on some browsers */
+  background: #fff;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+footer {
+  text-align: center;
+  padding: 40px 0;
+  opacity: 0.6;
+}
+
+
+/* =========================================================
+   BACKGROUND LAYER
+========================================================= */
+#bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+canvas {
+  position: fixed !important;
+  inset: 0;
+  z-index: -1;
+}
+
+
+/* =========================================================
+   FIX: PROJECT 2 + PROJECT 3 IMAGE DISPLAY
+========================================================= */
+/* Only affects project2.jpg and project3.jpg — nothing else */
+img[src$="project2.jpg"],
+img[src$="project3.jpg"] {
+  display: block;
+  margin: 20px auto;
+  width: 100%;
+  max-width: 1600px;
+  height: auto;      /* keeps 1600×900 ratio */
 }
