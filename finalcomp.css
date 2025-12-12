@@ -268,3 +268,17 @@ img[src$="project3.jpg"] {
   max-width: 1600px;
   height: auto;      /* keeps 1600×900 ratio */
 }
+
+/* Make the vibe grid expand properly */
+.vibe-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  grid-auto-rows: auto; /* allows new rows to expand downward */
+}
+
+/* Center item #10 under the grid */
+.vibe-item-center {
+  grid-column: 1 / -1;       /* spans all 3 columns */
+  justify-self: center;      /* centers within the grid */
+}
