@@ -161,6 +161,11 @@ h1 {
   margin: 0 auto;
 }
 
+/* Center 10th item under the grid */
+.vibe-item-center {
+  grid-column: 2; /* middle column */
+}
+
 .vibe-item {
   text-align: center;
 }
